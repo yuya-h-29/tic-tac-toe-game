@@ -9,5 +9,14 @@
 import Foundation
 
 struct K {
+    
+    // sugue
     static let loginSegue = "goHome"
+    
+    
+    struct Controllers {
+        static let menuVC = "MenuViewController"
+        static let HomeVC = "HomeViewController"
+    }
+    
 }

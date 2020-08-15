@@ -13,10 +13,39 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
+        
+        
+        
+        // setting a screen depending a user is nill or not
+        
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+          
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if user == nil {
+                //take user to MenuViewController
+                
+                let controller = storyboard.instantiateViewController(identifier: K.Controllers.menuVC)
+                
+                self.window?.rootViewController = controller
+                // shows the window and makes it the key window.
+                self.window?.makeKeyAndVisible()
+                
+            } else {
+                // take user to HomeViewController
+                let controller = storyboard.instantiateViewController(identifier: K.Controllers.HomeVC)
+                
+                self.window?.rootViewController = controller
+                // shows the window and makes it the key window.
+                self.window?.makeKeyAndVisible()
+            }
+            
+        }
         
         
         return true
