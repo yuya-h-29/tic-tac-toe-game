@@ -11,7 +11,12 @@ import Foundation
 struct K {
     
     // sugue
-    static let loginSegue = "goHome"
+    static let menuToLogin = "menuToLogin"
+    static let menuToRegister = "menuToRegister"
+    static let loginToHome = "loginToHome"
+    static let registerToHome = "registerToHome"
+    static let homeToGameScreen = "homeToGameScreen"
+    
     
     
     struct Controllers {

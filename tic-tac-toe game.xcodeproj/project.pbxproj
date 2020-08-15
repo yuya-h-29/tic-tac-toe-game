@@ -17,7 +17,7 @@
 		74DAD12D24E7774900717FFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD12C24E7774900717FFA /* Constants.swift */; };
 		74DAD13224E7D58C00717FFA /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD13124E7D58C00717FFA /* MenuViewController.swift */; };
 		74DAD13424E7D62900717FFA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD13324E7D62900717FFA /* LoginViewController.swift */; };
-		74DAD13624E7D63900717FFA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD13524E7D63900717FFA /* SignUpViewController.swift */; };
+		74DAD13624E7D63900717FFA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD13524E7D63900717FFA /* RegisterViewController.swift */; };
 		74DAD13824E7D64B00717FFA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD13724E7D64B00717FFA /* HomeViewController.swift */; };
 		74DAD13A24E7D65E00717FFA /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74DAD13924E7D65E00717FFA /* GameScreenViewController.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		74DAD12C24E7774900717FFA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		74DAD13124E7D58C00717FFA /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		74DAD13324E7D62900717FFA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		74DAD13524E7D63900717FFA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		74DAD13524E7D63900717FFA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		74DAD13724E7D64B00717FFA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		74DAD13924E7D65E00717FFA /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		878160CDE0D52E13F892E9D6 /* Pods-tic-tac-toe game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tic-tac-toe game.release.xcconfig"; path = "Target Support Files/Pods-tic-tac-toe game/Pods-tic-tac-toe game.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			children = (
 				74DAD13124E7D58C00717FFA /* MenuViewController.swift */,
 				74DAD13324E7D62900717FFA /* LoginViewController.swift */,
-				74DAD13524E7D63900717FFA /* SignUpViewController.swift */,
+				74DAD13524E7D63900717FFA /* RegisterViewController.swift */,
 				74DAD13724E7D64B00717FFA /* HomeViewController.swift */,
 				74DAD13924E7D65E00717FFA /* GameScreenViewController.swift */,
 			);
@@ -249,7 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74DAD13624E7D63900717FFA /* SignUpViewController.swift in Sources */,
+				74DAD13624E7D63900717FFA /* RegisterViewController.swift in Sources */,
 				746B978224E68AED005CDA57 /* AppDelegate.swift in Sources */,
 				74DAD13A24E7D65E00717FFA /* GameScreenViewController.swift in Sources */,
 				746B978424E68AED005CDA57 /* SceneDelegate.swift in Sources */,
