@@ -38,23 +38,22 @@ class RegisterViewController: UIViewController {
                 
                 if error != nil {
                     
-                    // make a pop up when a user failed to login
+                    // display a pop up alert when a user failed to register a new account
                     
-                    let invalidEmail = UIAlertController(title: "Register failed", message: "Sorry, we were not able to make your account. Please use a valid email adress.", preferredStyle: .alert)
+                    let invalidEmail = UIAlertController(title: "Register failed", message: "Sorry, we were not able to make your account. Please use a valid email adress and try again.", preferredStyle: .alert)
                     
-                    let shortPassword = UIAlertController(title: "Register failed", message: "Sorry, the password must have at least 6 characters.", preferredStyle: .alert)
+                    let shortPassword = UIAlertController(title: "Register failed", message: "Sorry, the password must have at least 6 characters. Please make sure the password length.", preferredStyle: .alert)
                     
                     let action = UIAlertAction(title: "OK", style: .default) { (action) in
                     }
                     
-                    
-                    // display alert
                     
                     if password.count < 6 {
                         shortPassword.addAction(action)
                         self.present(shortPassword, animated: true, completion: nil)
                         
                     } else {
+                        
                         invalidEmail.addAction(action)
                         self.present(invalidEmail, animated: true, completion: nil)
                     }

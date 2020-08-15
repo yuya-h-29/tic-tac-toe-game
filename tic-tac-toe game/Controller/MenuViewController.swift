@@ -16,6 +16,13 @@ class MenuViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBAction func loginPressed(_ sender: UIButton) {
+        
+        performSegue(withIdentifier: K.menuToLogin, sender: self)
+    }
+    
+    
 
     @IBAction func signUpPressed(_ sender: UIButton) {
         
