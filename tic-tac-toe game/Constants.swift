@@ -18,6 +18,10 @@ struct K {
     static let homeToGameScreen = "homeToGameScreen"
     
     
+    struct Names {
+        static let title = "tic-tac-toe"
+    }
+    
     
     struct Controllers {
         static let menuVC = "MenuViewController"

@@ -16,9 +16,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextFeild: UITextField!
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.isNavigationBarHidden = false
         
     }
     
