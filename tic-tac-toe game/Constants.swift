@@ -24,6 +24,11 @@ struct K {
     }
     
     
+    struct Image {
+        static let backgroundImage = "backgroundBrown"
+    }
+    
+    
     struct Controllers {
         static let menuVC = "MenuViewController"
         static let HomeVC = "HomeViewController"

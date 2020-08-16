@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FirebaseApp.configure()
         
-        
+        let db = Firestore.firestore()
+        print(db)
         
         // setting a screen depending a user is nill or not
         
