@@ -19,13 +19,16 @@ struct K {
     
     
     struct Names {
-        static let title = "tic-tac-toe"
+        static let title = "Apple VS Pineapple"
         static let cellIdentifier = "playerCell"
     }
     
     
     struct Image {
         static let backgroundImage = "backgroundBrown"
+        static let plate = "plate"
+        static let apple = "apple"
+        static let pineapple = "pineapple"
     }
     
     

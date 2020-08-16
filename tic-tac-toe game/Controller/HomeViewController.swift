@@ -112,5 +112,6 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+        performSegue(withIdentifier: K.homeToGameScreen, sender: self)
     }
 }
