@@ -20,6 +20,7 @@ struct K {
     
     struct Names {
         static let title = "tic-tac-toe"
+        static let cellIdentifier = "playerCell"
     }
     
     
