@@ -197,6 +197,9 @@
                                                             <constraint firstAttribute="width" secondItem="4SA-W0-iYJ" secondAttribute="height" multiplier="1:1" id="Sop-ao-gzR"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate1Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="Fgl-ab-gyx"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-dM-DJi">
                                                         <rect key="frame" x="126.99999999999997" y="0.0" width="118.66666666666666" height="119"/>
@@ -205,6 +208,9 @@
                                                             <constraint firstAttribute="width" secondItem="ZV5-dM-DJi" secondAttribute="height" multiplier="1:1" id="0DY-K3-dbK"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate2Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="KMS-8V-kMz"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BQ-95-R8C">
                                                         <rect key="frame" x="253.66666666666663" y="0.0" width="119" height="119"/>
@@ -213,6 +219,9 @@
                                                             <constraint firstAttribute="width" secondItem="1BQ-95-R8C" secondAttribute="height" multiplier="1:1" id="Trx-yo-UX1"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate3Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="d3g-CM-Bd7"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -231,6 +240,9 @@
                                                             <constraint firstAttribute="width" secondItem="zoU-zW-HX9" secondAttribute="height" multiplier="1:1" id="kCd-8c-dHd"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate4Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="Y7w-7p-txJ"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFs-Is-Wrb">
                                                         <rect key="frame" x="126.99999999999997" y="0.0" width="118.66666666666666" height="118.66666666666667"/>
@@ -239,6 +251,9 @@
                                                             <constraint firstAttribute="width" secondItem="hFs-Is-Wrb" secondAttribute="height" multiplier="1:1" id="emU-YG-spl"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate5Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="who-AE-OBa"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjw-v2-PsN">
                                                         <rect key="frame" x="253.66666666666663" y="0.0" width="119" height="118.66666666666667"/>
@@ -247,6 +262,9 @@
                                                             <constraint firstAttribute="width" secondItem="Cjw-v2-PsN" secondAttribute="height" multiplier="1:1" id="gIA-eX-28g"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate6Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="8tS-Co-kji"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -265,6 +283,9 @@
                                                             <constraint firstAttribute="width" secondItem="x7a-Ph-WEq" secondAttribute="height" multiplier="1:1" id="ovx-Z2-Rr2"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate7Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="8Iv-iM-iUo"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWL-of-P4b">
                                                         <rect key="frame" x="126.99999999999997" y="0.0" width="118.66666666666666" height="119"/>
@@ -273,6 +294,9 @@
                                                             <constraint firstAttribute="width" secondItem="mWL-of-P4b" secondAttribute="height" multiplier="1:1" id="5Uy-aR-Yhx"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate8Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="TFr-5g-deW"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4da-c4-nBm">
                                                         <rect key="frame" x="253.66666666666663" y="0.0" width="119" height="119"/>
@@ -281,6 +305,9 @@
                                                             <constraint firstAttribute="width" secondItem="4da-c4-nBm" secondAttribute="height" multiplier="1:1" id="ZGh-Ni-A3D"/>
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
+                                                        <connections>
+                                                            <action selector="plate9Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="xAk-oS-qcs"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -298,14 +325,15 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hand.point.right.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nWJ-sK-BEL">
-                                                        <rect key="frame" x="0.0" y="11.999999999999998" width="82.333333333333329" height="25.333333333333329"/>
-                                                        <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="11.999999999999998" width="60" height="25.333333333333329"/>
+                                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="3Sn-T1-vq5"/>
+                                                            <constraint firstAttribute="width" constant="60" id="gIp-4A-e5v"/>
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHu-N3-LQa">
-                                                        <rect key="frame" x="90.333333333333343" y="13" width="303.66666666666663" height="24"/>
+                                                        <rect key="frame" x="68" y="13" width="326" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -319,11 +347,15 @@
                                                 <rect key="frame" x="0.0" y="58" width="394" height="50"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hand.point.right.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nUM-Yt-Ook">
-                                                        <rect key="frame" x="0.0" y="11.999999999999998" width="82.333333333333329" height="25.333333333333329"/>
-                                                        <color key="tintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="11.999999999999998" width="60" height="25.333333333333329"/>
+                                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="5JI-C5-y3L"/>
+                                                            <constraint firstAttribute="width" constant="60" id="eGY-4Q-49A"/>
+                                                        </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCw-ze-8I9">
-                                                        <rect key="frame" x="90.333333333333343" y="13" width="303.66666666666663" height="24"/>
+                                                        <rect key="frame" x="68" y="13" width="326" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -333,8 +365,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Kfn-UM-h6h" firstAttribute="height" secondItem="WAW-ql-pZN" secondAttribute="height" id="E3Z-tZ-J9I"/>
-                                            <constraint firstItem="nUM-Yt-Ook" firstAttribute="width" secondItem="nWJ-sK-BEL" secondAttribute="width" id="fDW-CB-CBX"/>
-                                            <constraint firstItem="nUM-Yt-Ook" firstAttribute="height" secondItem="nWJ-sK-BEL" secondAttribute="height" id="wjo-A5-zev"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -357,18 +387,9 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="lvY-4u-Kh9"/>
                     <connections>
-                        <outlet property="plate1" destination="4SA-W0-iYJ" id="Oxs-4H-39L"/>
-                        <outlet property="plate2" destination="ZV5-dM-DJi" id="Qrk-8u-N71"/>
-                        <outlet property="plate3" destination="1BQ-95-R8C" id="fZb-wV-CGS"/>
-                        <outlet property="plate4" destination="zoU-zW-HX9" id="BcQ-ib-JzW"/>
-                        <outlet property="plate5" destination="hFs-Is-Wrb" id="gJz-25-6pm"/>
-                        <outlet property="plate6" destination="Cjw-v2-PsN" id="8Nt-ze-EdO"/>
-                        <outlet property="plate7" destination="x7a-Ph-WEq" id="OEq-LF-FYn"/>
-                        <outlet property="plate8" destination="mWL-of-P4b" id="jwi-qP-e1D"/>
-                        <outlet property="plate9" destination="4da-c4-nBm" id="uuL-nA-IIn"/>
                         <outlet property="playerOneHand" destination="nWJ-sK-BEL" id="bFo-z6-LL7"/>
                         <outlet property="playerOneName" destination="oHu-N3-LQa" id="h6q-B6-LAX"/>
-                        <outlet property="playerTwoHand" destination="nUM-Yt-Ook" id="6lT-xr-SHX"/>
+                        <outlet property="playerTwoHand" destination="nUM-Yt-Ook" id="nL7-p8-cMx"/>
                         <outlet property="playerTwoName" destination="tCw-ze-8I9" id="K0s-fd-f9y"/>
                         <outlet property="result" destination="jm7-9q-KKJ" id="t9k-dT-rEW"/>
                     </connections>

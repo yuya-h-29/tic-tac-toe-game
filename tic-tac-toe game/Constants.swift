@@ -29,6 +29,7 @@ struct K {
         static let plate = "plate"
         static let apple = "apple"
         static let pineapple = "pineapple"
+        static let handPoint = "hand.point.right.fill"
     }
     
     
