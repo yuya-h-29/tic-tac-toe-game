@@ -13,15 +13,13 @@ class RegisterViewController: UIViewController {
     
     
     @IBOutlet weak var emailTextField: UITextField!
-    
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
-
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()
+        setBackground(image: K.Image.backgroundFruitsTop)
 
     }
     
@@ -61,7 +59,29 @@ class RegisterViewController: UIViewController {
                     
                 } else {
                     
-                    self.performSegue(withIdentifier: K.registerToHome, sender: self)
+                    // Add a new document with a generated ID
+                    var ref: DocumentReference? = nil
+                    
+                    ref = self.db.collection(K.FStore.playersCollection).addDocument(data: [K.FStore.emailField: email, K.FStore.nameField: ""]) { (error) in
+                        
+                        if let err = error {
+                            print("There was an issue storing data to firestore. \(err)")
+                        } else {
+                            print("Document added with ID: \(ref!.documentID)")
+                        }
+                    }
+                    
+                    // pass this data
+                    
+                    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+                        if segue.identifier == K.registerToHome {
+                            let homeVC = segue.destination as! HomeViewController
+                            
+                            homeVC.documentID = ref?.documentID
+                        }
+                    }
+                    
+                     self.performSegue(withIdentifier: K.registerToHome, sender: self)
                     
                 }
                 

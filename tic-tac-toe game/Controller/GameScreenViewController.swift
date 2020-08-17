@@ -51,7 +51,7 @@ class GameScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()
+        setBackground(image: K.Image.backgroundImage)
         result.text = ""
         displayHandPointer()
         // Do any additional setup after loading the view.

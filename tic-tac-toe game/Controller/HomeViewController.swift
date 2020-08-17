@@ -13,6 +13,9 @@ import Firebase
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    var documentID: String?
+    
+    let db = Firestore.firestore()
     
     var players: [Player] = [
         Player(account: "2@d.com", name: "Jiro", loginNow: true),
@@ -34,7 +37,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()
+        setBackground(image: K.Image.backgroundImage)
         
         title = K.Names.title
         
@@ -43,8 +46,25 @@ class HomeViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
 
-      
+        registerName()
     }
+    
+    
+    // if player doesn't have a name, create in here
+    func registerName () {
+        if documentID != nil {
+    
+            db.collection(K.FStore.playersCollection).document(documentID!).getDocument { (documentSnapshot, error) in
+                if let e = error {
+                    print("There was an issue getting data from firestore. \(e)")
+                } else {
+                    documentSnapshot?.get("name")
+                }
+
+            }
+        }
+    }
+    
     
     
     

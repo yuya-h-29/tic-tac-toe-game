@@ -22,32 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db = Firestore.firestore()
         print(db)
         
-        // setting a screen depending a user is nill or not
-        
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-          
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            if user == nil {
-                //take user to MenuViewController
-                
-                let controller = storyboard.instantiateViewController(identifier: K.Controllers.menuVC)
-                
-                self.window?.rootViewController = controller
-                // shows the window and makes it the key window.
-                self.window?.makeKeyAndVisible()
-                
-            } else {
-                // take user to HomeViewController
-                let controller = storyboard.instantiateViewController(identifier: K.Controllers.HomeVC)
-                
-                self.window?.rootViewController = controller
-                // shows the window and makes it the key window.
-                self.window?.makeKeyAndVisible()
-            }
-            
-        }
-        
         
         return true
     }

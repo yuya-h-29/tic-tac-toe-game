@@ -25,6 +25,8 @@ struct K {
     
     
     struct Image {
+        static let backgroundimageWithFruits = "backgroundFruits"
+        static let backgroundFruitsTop = "backgroundFruitsTop"
         static let backgroundImage = "backgroundBrown"
         static let plate = "plate"
         static let apple = "apple"
@@ -38,4 +40,10 @@ struct K {
         static let HomeVC = "HomeViewController"
     }
     
+    
+    struct FStore {
+        static let playersCollection = "Players"
+        static let emailField = "email"
+        static let nameField = "name"
+    }
 }

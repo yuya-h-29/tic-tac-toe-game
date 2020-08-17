@@ -10,6 +10,8 @@
 		244DA4D5ABE446A4D52FC8B0 /* Pods_tic_tac_toe_game.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC46191A7CBF34CBE6F94722 /* Pods_tic_tac_toe_game.framework */; };
 		7416D45724E91313007EBE2F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45624E91313007EBE2F /* Player.swift */; };
 		7416D45A24E9400C007EBE2F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45924E9400C007EBE2F /* Background.swift */; };
+		7416D45C24EACA5C007EBE2F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45B24EACA5C007EBE2F /* CustomButton.swift */; };
+		7416D45E24EAD458007EBE2F /* CustomTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45D24EAD458007EBE2F /* CustomTextFeild.swift */; };
 		746B978224E68AED005CDA57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B978124E68AED005CDA57 /* AppDelegate.swift */; };
 		746B978424E68AED005CDA57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B978324E68AED005CDA57 /* SceneDelegate.swift */; };
 		746B978924E68AED005CDA57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 746B978724E68AED005CDA57 /* Main.storyboard */; };
@@ -28,6 +30,8 @@
 		3A693D95521DF83B0C02BCEE /* Pods-tic-tac-toe game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tic-tac-toe game.debug.xcconfig"; path = "Target Support Files/Pods-tic-tac-toe game/Pods-tic-tac-toe game.debug.xcconfig"; sourceTree = "<group>"; };
 		7416D45624E91313007EBE2F /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		7416D45924E9400C007EBE2F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		7416D45B24EACA5C007EBE2F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		7416D45D24EAD458007EBE2F /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
 		746B977E24E68AED005CDA57 /* tic-tac-toe game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tic-tac-toe game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		746B978124E68AED005CDA57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		746B978324E68AED005CDA57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				7416D45924E9400C007EBE2F /* Background.swift */,
+				7416D45B24EACA5C007EBE2F /* CustomButton.swift */,
+				7416D45D24EAD458007EBE2F /* CustomTextFeild.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -265,11 +271,13 @@
 			files = (
 				74DAD13624E7D63900717FFA /* RegisterViewController.swift in Sources */,
 				746B978224E68AED005CDA57 /* AppDelegate.swift in Sources */,
+				7416D45E24EAD458007EBE2F /* CustomTextFeild.swift in Sources */,
 				74DAD13A24E7D65E00717FFA /* GameScreenViewController.swift in Sources */,
 				746B978424E68AED005CDA57 /* SceneDelegate.swift in Sources */,
 				74DAD12D24E7774900717FFA /* Constants.swift in Sources */,
 				74DAD13424E7D62900717FFA /* LoginViewController.swift in Sources */,
 				74DAD13824E7D64B00717FFA /* HomeViewController.swift in Sources */,
+				7416D45C24EACA5C007EBE2F /* CustomButton.swift in Sources */,
 				7416D45724E91313007EBE2F /* Player.swift in Sources */,
 				74DAD13224E7D58C00717FFA /* MenuViewController.swift in Sources */,
 				7416D45A24E9400C007EBE2F /* Background.swift in Sources */,

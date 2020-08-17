@@ -15,7 +15,7 @@ class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()
+        setBackground(image: K.Image.backgroundimageWithFruits)
         // Do any additional setup after loading the view.
     }
     
@@ -40,7 +40,8 @@ extension UIViewController {
     
     
     
-    func setBackground () {
+    func setBackground (image:
+    String) {
         
         let backgroundImageView = UIImageView()
         view.addSubview(backgroundImageView)
@@ -50,7 +51,7 @@ extension UIViewController {
         backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        backgroundImageView.image = UIImage(named: K.Image.backgroundImage)
+        backgroundImageView.image = UIImage(named: image)
         view.sendSubviewToBack(backgroundImageView)
         
         

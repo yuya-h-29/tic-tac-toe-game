@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackground()
+        setBackground(image: K.Image.backgroundFruitsTop)
 
         self.navigationController?.isNavigationBarHidden = false
         
