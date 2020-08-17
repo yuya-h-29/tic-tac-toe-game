@@ -131,14 +131,15 @@ class GameScreenViewController: UIViewController {
     
     @IBAction func platePressed(_ sender: UIButton) {
         
-        if isGameOver {
-            sender.isEnabled = false
+        if gameBoard[sender.tag] == "" && !isGameOver{
+            
+            changePlateImage(plate: sender)
+            hasGameFinihsed()
+            chnagePlayerTurn()
+            displayHandPointer()
+            print(gameBoard)
+            print(isGameOver)
         }
-
-        changePlateImage(plate: sender)
-        hasGameFinihsed()
-        chnagePlayerTurn()
-        displayHandPointer()
     }
     
     
