@@ -6,10 +6,6 @@
 //  Copyright © 2020 Yuya Harada. All rights reserved.
 //
 
-
-
-
-
 import UIKit
 
 class GameScreenViewController: UIViewController {
@@ -20,31 +16,85 @@ class GameScreenViewController: UIViewController {
     @IBOutlet weak var playerTwoName: UILabel!
     @IBOutlet weak var playerOneHand: UIImageView!
     @IBOutlet weak var playerTwoHand: UIImageView!
-
-    
-    
-    var gameBoard: [String] = [
-        
-    ]
+    @IBOutlet weak var player1: UILabel!
+    @IBOutlet weak var player2: UILabel!
     
     var isPlayer1 = true
+    var isGameOver = false
+
+    /* gameBoard structure
+     
+     | 0 | 1 | 2 |
+     -------------
+     | 3 | 4 | 5 |
+     -------------
+     | 6 | 7 | 8 |
+     
+     */
     
+    var gameBoard: [String] = [
+        "", "", "", "", "", "", "", "", "",
+    ]
+    
+    
+    let winningPatterns = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+    ]
     
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
-        result.text = K.Names.title
+        result.text = ""
         displayHandPointer()
         // Do any additional setup after loading the view.
     }
     
     
+    //MARK: - check which player won the game
+    func changeGameBoard (index: Int, fruit: String){
+        
+        // add name of the fruit in the gameBoard
+        gameBoard[index] = fruit
+    }
     
-    // when player 1 taped a button, change isPlayer1 to flase
+    
+    func hasGameFinihsed () {
+        
+        for winningPattern in winningPatterns {
+            if gameBoard[winningPattern[0]] == gameBoard[winningPattern[1]] && gameBoard[winningPattern[1]] == gameBoard[winningPattern[2]] && gameBoard[winningPattern[0]].count > 0{
+                isGameOver = true
+                let winner = isPlayer1 ? player1.text : player2.text
+                
+                changeMessage(winner: winner)
+            }
+        }
+    }
+    
 
+    
+    // change message
+    
+    func changeMessage (winner: String?) {
+        
+        if winner == nil {
+            result.text = "Draw"
+        } else {
+            result.text = "\(winner!) Won!!"
+        }
+    }
+    
+
+    
+
+    //MARK: - player's turn related
     
     func displayHandPointer () {
 
@@ -58,19 +108,6 @@ class GameScreenViewController: UIViewController {
     }
     
     
-    
-    
-    func changePlateImage (plate: UIButton) {
-
-        let fruitImage = isPlayer1 ? K.Image.apple : K.Image.pineapple
-
-        plate.setImage(UIImage(named: fruitImage), for: .normal)
-
-        chnagePlayerTurn()
-        displayHandPointer()
-    }
-    
-    
     func chnagePlayerTurn () {
         if isPlayer1 {
             isPlayer1 = false
@@ -78,55 +115,34 @@ class GameScreenViewController: UIViewController {
             isPlayer1 = true
         }
     }
+     
     
+    //MARK: - change image of a plate
+    
+    func changePlateImage (plate: UIButton) {
 
-    
-    
-    //MARK: - IBA actions for board game
-    
-    @IBAction func plate1Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
+        let fruitImage = isPlayer1 ? K.Image.apple : K.Image.pineapple
+
+        plate.setImage(UIImage(named: fruitImage), for: .normal)
+
+        changeGameBoard(index: plate.tag, fruit: fruitImage)
     }
     
-
-    @IBAction func plate2Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
     
-    
-    @IBAction func plate3Pressed(_ sender: UIButton) {
+    @IBAction func platePressed(_ sender: UIButton) {
         
+        if isGameOver {
+            sender.isEnabled = false
+        }
+
         changePlateImage(plate: sender)
+        hasGameFinihsed()
+        chnagePlayerTurn()
+        displayHandPointer()
     }
     
-    
-    @IBAction func plate4Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
-    
-    
-    @IBAction func plate5Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
-    
-    
-    @IBAction func plate6Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
     
 
-    @IBAction func plate7Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
-    
-    
-    @IBAction func plate8Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
-    
-    @IBAction func plate9Pressed(_ sender: UIButton) {
-        changePlateImage(plate: sender)
-    }
     
     
 }

@@ -167,7 +167,7 @@
             </objects>
             <point key="canvasLocation" x="8934.782608695652" y="200.54347826086959"/>
         </scene>
-        <!--Game Screen View Controller-->
+        <!--Apple VS Pineapple-->
         <scene sceneID="iRz-HJ-Lsj">
             <objects>
                 <viewController id="7Y1-hc-AmC" customClass="GameScreenViewController" customModule="tic_tac_toe_game" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,7 +190,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eGE-3C-5nl" userLabel="TopSV">
                                                 <rect key="frame" x="0.0" y="0.0" width="372.66666666666669" height="119"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SA-W0-iYJ">
+                                                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SA-W0-iYJ">
                                                         <rect key="frame" x="0.0" y="0.0" width="119" height="119"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -198,10 +198,10 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate1Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="Fgl-ab-gyx"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="Sa7-zo-I9w"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-dM-DJi">
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-dM-DJi">
                                                         <rect key="frame" x="126.99999999999997" y="0.0" width="118.66666666666666" height="119"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -209,10 +209,10 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate2Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="KMS-8V-kMz"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="xTd-Am-qXK"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BQ-95-R8C">
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1BQ-95-R8C">
                                                         <rect key="frame" x="253.66666666666663" y="0.0" width="119" height="119"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -220,7 +220,7 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate3Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="d3g-CM-Bd7"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="GS6-K0-PxB"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -233,7 +233,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-gm-2Xt" userLabel="MiddleSV">
                                                 <rect key="frame" x="0.0" y="126.99999999999997" width="372.66666666666669" height="118.66666666666666"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoU-zW-HX9">
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoU-zW-HX9">
                                                         <rect key="frame" x="0.0" y="0.0" width="119" height="118.66666666666667"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -241,10 +241,10 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate4Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="Y7w-7p-txJ"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="1yC-jD-uxs"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFs-Is-Wrb">
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFs-Is-Wrb">
                                                         <rect key="frame" x="126.99999999999997" y="0.0" width="118.66666666666666" height="118.66666666666667"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -252,10 +252,10 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate5Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="who-AE-OBa"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="4al-oR-J4r"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjw-v2-PsN">
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjw-v2-PsN">
                                                         <rect key="frame" x="253.66666666666663" y="0.0" width="119" height="118.66666666666667"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -263,7 +263,7 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate6Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="8tS-Co-kji"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="uhP-OH-w1C"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -276,7 +276,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="C7m-G6-BDU" userLabel="BottomSV">
                                                 <rect key="frame" x="0.0" y="253.66666666666663" width="372.66666666666669" height="119"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7a-Ph-WEq">
+                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7a-Ph-WEq">
                                                         <rect key="frame" x="0.0" y="0.0" width="119" height="119"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -284,10 +284,10 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate7Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="8Iv-iM-iUo"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="Ge4-Ot-9EM"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWL-of-P4b">
+                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mWL-of-P4b">
                                                         <rect key="frame" x="126.99999999999997" y="0.0" width="118.66666666666666" height="119"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -295,10 +295,10 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate8Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="TFr-5g-deW"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="yvv-Yt-km4"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4da-c4-nBm">
+                                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4da-c4-nBm">
                                                         <rect key="frame" x="253.66666666666663" y="0.0" width="119" height="119"/>
                                                         <color key="backgroundColor" red="0.60510832069999998" green="0.1105642691" blue="0.121531941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <constraints>
@@ -306,7 +306,7 @@
                                                         </constraints>
                                                         <state key="normal" image="plate"/>
                                                         <connections>
-                                                            <action selector="plate9Pressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="xAk-oS-qcs"/>
+                                                            <action selector="platePressed:" destination="7Y1-hc-AmC" eventType="touchUpInside" id="QCU-2g-KDl"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -385,8 +385,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EGp-c2-wRa"/>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="lvY-4u-Kh9"/>
+                    <navigationItem key="navigationItem" title="Apple VS Pineapple" largeTitleDisplayMode="always" id="lvY-4u-Kh9"/>
                     <connections>
+                        <outlet property="player1" destination="oHu-N3-LQa" id="kMU-bY-Onr"/>
+                        <outlet property="player2" destination="tCw-ze-8I9" id="WkL-8Y-PNB"/>
                         <outlet property="playerOneHand" destination="nWJ-sK-BEL" id="bFo-z6-LL7"/>
                         <outlet property="playerOneName" destination="oHu-N3-LQa" id="h6q-B6-LAX"/>
                         <outlet property="playerTwoHand" destination="nUM-Yt-Ook" id="nL7-p8-cMx"/>
