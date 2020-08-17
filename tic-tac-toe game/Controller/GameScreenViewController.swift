@@ -68,6 +68,7 @@ class GameScreenViewController: UIViewController {
     
     func hasGameFinihsed () {
         
+        // if one of the player wins, this block is called
         for winningPattern in winningPatterns {
             if gameBoard[winningPattern[0]] == gameBoard[winningPattern[1]] && gameBoard[winningPattern[1]] == gameBoard[winningPattern[2]] && gameBoard[winningPattern[0]].count > 0{
                 isGameOver = true
@@ -76,6 +77,14 @@ class GameScreenViewController: UIViewController {
                 changeMessage(winner: winner)
             }
         }
+        
+        // for Draw
+        if !gameBoard.contains("") && !isGameOver {
+            isGameOver = true
+            changeMessage(winner: nil)
+        }
+        
+        
     }
     
 
@@ -98,9 +107,14 @@ class GameScreenViewController: UIViewController {
     
     func displayHandPointer () {
 
-        if isPlayer1 == true {
+        if isGameOver {
+            playerOneHand.image = nil
+            playerTwoHand.image = nil
+            
+        } else if isPlayer1 {
             playerTwoHand.image = nil
             playerOneHand.image = UIImage(systemName: K.Image.handPoint)
+            
         } else {
             playerOneHand.image = nil
             playerTwoHand.image = UIImage(systemName: K.Image.handPoint)
@@ -137,8 +151,6 @@ class GameScreenViewController: UIViewController {
             hasGameFinihsed()
             chnagePlayerTurn()
             displayHandPointer()
-            print(gameBoard)
-            print(isGameOver)
         }
     }
     
