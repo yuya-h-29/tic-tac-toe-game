@@ -21,11 +21,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundFruitsTop)
-
+        emailTextFeild.delegate = self
+        passwordTextFeild.delegate = self
         self.navigationController?.isNavigationBarHidden = false
         
     }
-    
     
     
     //MARK: - Login with existing account
@@ -66,4 +66,11 @@ class LoginViewController: UIViewController {
         
     }
     
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
 }

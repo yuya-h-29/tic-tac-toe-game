@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		7416D45A24E9400C007EBE2F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45924E9400C007EBE2F /* Background.swift */; };
 		7416D45C24EACA5C007EBE2F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45B24EACA5C007EBE2F /* CustomButton.swift */; };
 		7416D45E24EAD458007EBE2F /* CustomTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45D24EAD458007EBE2F /* CustomTextFeild.swift */; };
+		7416D46124EB5B59007EBE2F /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7416D46024EB5B59007EBE2F /* IQKeyboardManagerSwift */; };
 		746B978224E68AED005CDA57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B978124E68AED005CDA57 /* AppDelegate.swift */; };
 		746B978424E68AED005CDA57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B978324E68AED005CDA57 /* SceneDelegate.swift */; };
 		746B978924E68AED005CDA57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 746B978724E68AED005CDA57 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				244DA4D5ABE446A4D52FC8B0 /* Pods_tic_tac_toe_game.framework in Frameworks */,
+				7416D46124EB5B59007EBE2F /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +173,9 @@
 			dependencies = (
 			);
 			name = "tic-tac-toe game";
+			packageProductDependencies = (
+				7416D46024EB5B59007EBE2F /* IQKeyboardManagerSwift */,
+			);
 			productName = "tic-tac-toe game";
 			productReference = 746B977E24E68AED005CDA57 /* tic-tac-toe game.app */;
 			productType = "com.apple.product-type.application";
@@ -199,6 +204,9 @@
 				Base,
 			);
 			mainGroup = 746B977524E68AED005CDA57;
+			packageReferences = (
+				7416D45F24EB5B59007EBE2F /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 746B977F24E68AED005CDA57 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -480,6 +488,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7416D45F24EB5B59007EBE2F /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7416D46024EB5B59007EBE2F /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7416D45F24EB5B59007EBE2F /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 746B977624E68AED005CDA57 /* Project object */;
 }

@@ -20,6 +20,8 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundFruitsTop)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
 
     }
     
@@ -28,7 +30,7 @@ class RegisterViewController: UIViewController {
     //MARK: - register a new account
     
     @IBAction func registerPressed(_ sender: UIButton) {
-        
+
         if let email = emailTextField.text, let password = passwordTextField.text {
             
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -59,29 +61,21 @@ class RegisterViewController: UIViewController {
                     
                 } else {
                     
+    
                     // Add a new document with a generated ID
                     var ref: DocumentReference? = nil
                     
-                    ref = self.db.collection(K.FStore.playersCollection).addDocument(data: [K.FStore.emailField: email, K.FStore.nameField: ""]) { (error) in
+                    ref = self.db.collection(K.FStore.playersCollection).addDocument(data: [K.FStore.emailField: email, K.FStore.nameField: "", K.FStore.uID: Auth.auth().currentUser!.uid]) { (error) in
                         
                         if let err = error {
                             print("There was an issue storing data to firestore. \(err)")
                         } else {
                             print("Document added with ID: \(ref!.documentID)")
+                            print("this is your uid: \(String(describing: Auth.auth().currentUser!.uid))")
+                            self.performSegue(withIdentifier: K.registerToHome, sender: self)
                         }
                     }
                     
-                    // pass this data
-                    
-                    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                        if segue.identifier == K.registerToHome {
-                            let homeVC = segue.destination as! HomeViewController
-                            
-                            homeVC.documentID = ref?.documentID
-                        }
-                    }
-                    
-                     self.performSegue(withIdentifier: K.registerToHome, sender: self)
                     
                 }
                 
@@ -89,7 +83,11 @@ class RegisterViewController: UIViewController {
             
         }
     }
-    
+}
 
 
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
 }

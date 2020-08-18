@@ -11,5 +11,4 @@ import Foundation
 struct Player {
     let account: String
     let name: String
-    let loginNow: Bool
 }

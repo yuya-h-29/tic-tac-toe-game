@@ -13,25 +13,19 @@ import Firebase
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var documentID: String?
     
     let db = Firestore.firestore()
     
     var players: [Player] = [
-        Player(account: "2@d.com", name: "Jiro", loginNow: true),
-        Player(account: "3@r.com", name: "Taro", loginNow: true),
-        Player(account: "3f@c.com", name: "Saburo", loginNow: false),
-        Player(account: "3f@c.com", name: "Saburo", loginNow: false)
+        Player(account: "2@d.com", name: "Jiro"),
+        Player(account: "3@r.com", name: "Taro"),
+        Player(account: "3f@c.com", name: "Saburo"),
+        Player(account: "3f@c.com", name: "Saburo")
 
     ]
     
-    
+    let user = Auth.auth().currentUser
     var activePlayers = 0
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        numOfActivePlayers()
-    }
     
     
 
@@ -45,28 +39,79 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         
         navigationItem.hidesBackButton = true
-
+        print("\(user!.uid), is you")
         registerName()
+        
+        loadPlayers()
     }
     
     
-    // if player doesn't have a name, create in here
-    func registerName () {
-        if documentID != nil {
+    func loadPlayers() {
+        players = []
     
-            db.collection(K.FStore.playersCollection).document(documentID!).getDocument { (documentSnapshot, error) in
-                if let e = error {
-                    print("There was an issue getting data from firestore. \(e)")
-                } else {
-                    documentSnapshot?.get("name")
+        db.collection(K.FStore.playersCollection).getDocuments { (querySnapshot, error) in
+            if let e = error {
+                print("Error getting documents: \(e)")
+            } else {
+                if let snapshotDocuments = querySnapshot?.documents {
+                    for doc in snapshotDocuments {
+                        
+                        let data = doc.data()
+                        
+                        print("this is data \(data)")
+                    }
                 }
-
             }
         }
     }
     
     
     
+    //MARK: - register the player name
+    
+    func registerName() {
+        let userData = db.collection(K.FStore.playersCollection).document(user!.uid)
+
+        db.collection(K.FStore.playersCollection).whereField(K.FStore.uID, isEqualTo: userData.documentID).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                        
+                        let userName = document.data()[K.FStore.nameField] as! String
+                    
+                        if userName.count < 1 {
+                            let alert = UIAlertController(title: "Let's register your user name!!", message: "", preferredStyle: .alert)
+                            
+                            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+                                if let textField = alert.textFields?[0], let text = textField.text {
+                                    
+                                    self.db.collection(K.FStore.playersCollection).document(document.documentID).updateData([K.FStore.nameField: text]) { err in
+                                        if let e = err {
+                                            print("Error updating document: \(e)")
+                                        } else {
+                                            print("success!")
+                                        }
+                                    }
+                                } 
+                            }))
+                           
+                            alert.addTextField { (textField) in
+                                textField.placeholder = "user name"
+                                textField.text = userName
+                            }
+                            
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+        }
+    }
+        
+        
+        
+
     
     //MARK: - logout action
     
@@ -93,19 +138,10 @@ class HomeViewController: UIViewController {
         
     }
     
-    
-    //MARK: - count players who are logged in
-    
-    func numOfActivePlayers() {
-        for player in players {
-            if player.loginNow == true {
-                activePlayers += 1
-            }
-        }
-    }
-    
 
 }
+
+
 
 
 //MARK: - extentions for table view

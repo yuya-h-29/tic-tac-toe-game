@@ -45,5 +45,6 @@ struct K {
         static let playersCollection = "Players"
         static let emailField = "email"
         static let nameField = "name"
+        static let uID = "uID"
     }
 }
