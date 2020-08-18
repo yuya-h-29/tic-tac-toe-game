@@ -43,9 +43,14 @@ struct K {
     
     struct FStore {
         static let playersCollection = "Players"
+        static let newGameCpllection = "NewGame"
         static let emailField = "email"
         static let nameField = "name"
         static let uID = "uID"
         static let dateField = "date"
+        static let isReadyField = "isReady"
+        static let player1Field = "player1"
+        static let player2Field = "player2"
+        static let gameBoardField = "gameBoard"
     }
 }

@@ -171,9 +171,14 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="uZ4-sE-E42">
                         <barButtonItem key="backBarButtonItem" title="Home" id="cQa-Ub-kbe"/>
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="U91-e5-99I">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="U91-e5-99I">
                             <connections>
                                 <action selector="logoutPressed:" destination="adE-M7-gNa" id="LaX-H1-9lg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rQU-Dt-LA4">
+                            <connections>
+                                <action selector="addPressed:" destination="adE-M7-gNa" id="QPx-R5-40z"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

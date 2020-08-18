@@ -15,10 +15,17 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let db = Firestore.firestore()
+    var docId = ""
     
     var players: [Player] = []
-    
+    var player = Player(playerID: "", name: "", isReady: false)
+
     let user = Auth.auth().currentUser
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getUserDocumetId()
+    }
     
     
     override func viewDidLoad() {
@@ -28,30 +35,29 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         navigationItem.hidesBackButton = true
-        registerName()
-        
-        loadPlayers()
     }
     
-    
+    //MARK: - load players who has an account on the table view
+
     func loadPlayers() {
     
         db.collection(K.FStore.playersCollection)
             .order(by: K.FStore.dateField, descending: true)
-            .addSnapshotListener { (querySnapshot, error) in
+            .whereField(K.FStore.isReadyField, isEqualTo: true)
+            .getDocuments() { (querySnapshot, err) in
             
             self.players = []
             
-            if let e = error {
-                print("Error getting documents: \(e)")
+            if let err = err {
+                print("Error getting documents: \(err)")
             } else {
                 if let snapshotDocuments = querySnapshot?.documents {
                     for doc in snapshotDocuments {
                         
                         let data = doc.data()
                         
-                        if let playerName = data[K.FStore.nameField] as? String, let playerID = data[K.FStore.uID] as? String {
-                            let newPlayers = Player(playerID: playerID, name: playerName)
+                        if let playerName = data[K.FStore.nameField] as? String, let playerID = data[K.FStore.uID] as? String, let isReady = data[K.FStore.isReadyField] as? Bool {
+                            let newPlayers = Player(playerID: playerID, name: playerName, isReady:  isReady)
                             self.players.append(newPlayers)
                             
                             DispatchQueue.main.async {
@@ -66,12 +72,35 @@ class HomeViewController: UIViewController {
     
     
     
+    func getUserDocumetId() {
+        let userAuthUid = db.collection(K.FStore.playersCollection).document(user!.uid)
+        db.collection(K.FStore.playersCollection)
+            .whereField(K.FStore.uID, isEqualTo: userAuthUid.documentID)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for doc in querySnapshot!.documents {
+                        print("\(doc.documentID) => \(doc.data())")
+                        self.docId = doc.documentID
+                        
+                        self.registerPlayerName(documentId: self.docId)
+                    }
+                }
+        }
+    }
+    
+    
+    
+    
     //MARK: - register the player name
     
     func registerName() {
-        let userData = db.collection(K.FStore.playersCollection).document(user!.uid)
+        let userData = self.db.collection(K.FStore.playersCollection).document(self.user!.uid)
 
-        db.collection(K.FStore.playersCollection).whereField(K.FStore.uID, isEqualTo: userData.documentID).getDocuments() { (querySnapshot, err) in
+        self.db.collection(K.FStore.playersCollection)
+            .whereField(K.FStore.uID, isEqualTo: userData.documentID)
+            .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -86,7 +115,9 @@ class HomeViewController: UIViewController {
                             alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
                                 if let textField = alert.textFields?[0], let text = textField.text {
                                     
-                                    self.db.collection(K.FStore.playersCollection).document(document.documentID).updateData([K.FStore.nameField: text]) { err in
+                                    self.db.collection(K.FStore.playersCollection)
+                                        .document(document.documentID)
+                                        .updateData([K.FStore.nameField: text]) { err in
                                         if let e = err {
                                             print("Error updating document: \(e)")
                                         } else {
@@ -105,7 +136,31 @@ class HomeViewController: UIViewController {
                 }
         }
     }
+    
+    
+    //MARK: - register palyer name
         
+    
+    func registerPlayerName(documentId: String) {
+        let alert = UIAlertController(title: "Let's register your user name!!", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+                if let textField = alert.textFields?[0], let text = textField.text {
+                    self.db.collection(K.FStore.playersCollection)
+                    .document(documentId)
+                        .updateData([K.FStore.nameField: text]) { err in
+                        if let e = err {
+                            print("Error updating document: \(e)")
+                        } else {
+                            print("success!")
+                        }
+                    }
+                }
+            }))
+            alert.addTextField { (textField) in
+                textField.placeholder = "user name"
+            }
+            self.present(alert, animated: true, completion: nil)
+    }
         
 
     
@@ -134,8 +189,26 @@ class HomeViewController: UIViewController {
         
     }
     
+    
+    //MARK: - create new game
+    
+    @IBAction func addPressed(_ sender: UIBarButtonItem) {
+        
+        performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+        
+//        db.collection(K.FStore.playersCollection)
+        
+        
+        
+        
+        
+    }
+    
+    
 
 }
+
+
 
 
 
@@ -164,6 +237,27 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+
+//        var sender =
+//        var receiver =
+        
+        
+        //make new db and
+        
+        
+        db.collection(K.FStore.newGameCpllection)
+            .addDocument(data: [K.FStore.gameBoardField: GameBoard.gameBoard]) { (err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    
+                }
+        }
+        
+        
+        
+        
+        
         performSegue(withIdentifier: K.homeToGameScreen, sender: self)
     }
 }

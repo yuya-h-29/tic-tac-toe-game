@@ -13,6 +13,7 @@
 		7416D45C24EACA5C007EBE2F /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45B24EACA5C007EBE2F /* CustomButton.swift */; };
 		7416D45E24EAD458007EBE2F /* CustomTextFeild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D45D24EAD458007EBE2F /* CustomTextFeild.swift */; };
 		7416D46124EB5B59007EBE2F /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7416D46024EB5B59007EBE2F /* IQKeyboardManagerSwift */; };
+		7416D46324EBBE46007EBE2F /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7416D46224EBBE46007EBE2F /* GameBoard.swift */; };
 		746B978224E68AED005CDA57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B978124E68AED005CDA57 /* AppDelegate.swift */; };
 		746B978424E68AED005CDA57 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746B978324E68AED005CDA57 /* SceneDelegate.swift */; };
 		746B978924E68AED005CDA57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 746B978724E68AED005CDA57 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		7416D45924E9400C007EBE2F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		7416D45B24EACA5C007EBE2F /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		7416D45D24EAD458007EBE2F /* CustomTextFeild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFeild.swift; sourceTree = "<group>"; };
+		7416D46224EBBE46007EBE2F /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		746B977E24E68AED005CDA57 /* tic-tac-toe game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tic-tac-toe game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		746B978124E68AED005CDA57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		746B978324E68AED005CDA57 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				7416D45624E91313007EBE2F /* Player.swift */,
+				7416D46224EBBE46007EBE2F /* GameBoard.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				74DAD13624E7D63900717FFA /* RegisterViewController.swift in Sources */,
 				746B978224E68AED005CDA57 /* AppDelegate.swift in Sources */,
 				7416D45E24EAD458007EBE2F /* CustomTextFeild.swift in Sources */,
+				7416D46324EBBE46007EBE2F /* GameBoard.swift in Sources */,
 				74DAD13A24E7D65E00717FFA /* GameScreenViewController.swift in Sources */,
 				746B978424E68AED005CDA57 /* SceneDelegate.swift in Sources */,
 				74DAD12D24E7774900717FFA /* Constants.swift in Sources */,

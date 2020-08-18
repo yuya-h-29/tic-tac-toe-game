@@ -11,5 +11,5 @@ import Foundation
 struct Player {
     let playerID: String
     let name: String
-
+    let isReady: Bool
 }
