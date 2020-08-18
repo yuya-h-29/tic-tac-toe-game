@@ -50,6 +50,7 @@ extension UIViewController {
         backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        backgroundImageView.contentMode = .scaleAspectFill
         
         backgroundImageView.image = UIImage(named: image)
         view.sendSubviewToBack(backgroundImageView)

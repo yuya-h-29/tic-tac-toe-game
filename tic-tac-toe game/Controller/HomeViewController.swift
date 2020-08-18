@@ -18,14 +18,16 @@ class HomeViewController: UIViewController {
     var docId = ""
     
     var players: [Player] = []
-    var player = Player(playerID: "", name: "", isReady: false)
+    var player = Player(uID: "", name: "", isReady: false, email: "")
+    var playerInfo = [String: Any]()
+    var gameDocumentID = ""
 
     let user = Auth.auth().currentUser
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        getUserDocumetId()
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//
+//    }
     
     
     override func viewDidLoad() {
@@ -35,42 +37,54 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         navigationItem.hidesBackButton = true
+        
+        getUserDocumetId()
+        loadPlayers()
     }
     
     //MARK: - load players who has an account on the table view
-
-    func loadPlayers() {
     
+    func loadPlayers() {
+        
         db.collection(K.FStore.playersCollection)
-            .order(by: K.FStore.dateField, descending: true)
             .whereField(K.FStore.isReadyField, isEqualTo: true)
-            .getDocuments() { (querySnapshot, err) in
+            .addSnapshotListener { (querySnapshot, err) in
             
             self.players = []
             
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting documents1: \(err)")
             } else {
                 if let snapshotDocuments = querySnapshot?.documents {
                     for doc in snapshotDocuments {
                         
                         let data = doc.data()
-                        
-                        if let playerName = data[K.FStore.nameField] as? String, let playerID = data[K.FStore.uID] as? String, let isReady = data[K.FStore.isReadyField] as? Bool {
-                            let newPlayers = Player(playerID: playerID, name: playerName, isReady:  isReady)
-                            self.players.append(newPlayers)
+                                            
+                        let playerName = data[K.FStore.nameField] as! String
+                        let userId = data[K.FStore.uID] as! String
+                        let isReady = data[K.FStore.isReadyField] as! Bool
+                        let email = data[K.FStore.emailField] as! String
+                            
+                        let readyPlayer = Player(uID: userId, name: playerName, isReady: isReady, email: email)
+                            
+                            self.players.append(readyPlayer)
+
                             
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
                             }
-                        }
+                        
                     }
                 }
             }
         }
+        
+        
     }
+
     
     
+    //MARK: - get document ID for the user and pass the value to function(s)
     
     func getUserDocumetId() {
         let userAuthUid = db.collection(K.FStore.playersCollection).document(user!.uid)
@@ -78,64 +92,20 @@ class HomeViewController: UIViewController {
             .whereField(K.FStore.uID, isEqualTo: userAuthUid.documentID)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
-                    print("Error getting documents: \(err)")
+                    print("Error getting documents2: \(err)")
                 } else {
                     for doc in querySnapshot!.documents {
-                        print("\(doc.documentID) => \(doc.data())")
+//                        print("\(doc.documentID) => \(doc.data())")
                         self.docId = doc.documentID
-                        
                         self.registerPlayerName(documentId: self.docId)
-                    }
-                }
-        }
-    }
-    
-    
-    
-    
-    //MARK: - register the player name
-    
-    func registerName() {
-        let userData = self.db.collection(K.FStore.playersCollection).document(self.user!.uid)
-
-        self.db.collection(K.FStore.playersCollection)
-            .whereField(K.FStore.uID, isEqualTo: userData.documentID)
-            .getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
+                        self.playerInfo = doc.data()
                         
-                        let userName = document.data()[K.FStore.nameField] as! String
-                    
-                        if userName.count < 1 {
-                            let alert = UIAlertController(title: "Let's register your user name!!", message: "", preferredStyle: .alert)
-                            
-                            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
-                                if let textField = alert.textFields?[0], let text = textField.text {
-                                    
-                                    self.db.collection(K.FStore.playersCollection)
-                                        .document(document.documentID)
-                                        .updateData([K.FStore.nameField: text]) { err in
-                                        if let e = err {
-                                            print("Error updating document: \(e)")
-                                        } else {
-                                            print("success!")
-                                        }
-                                    }
-                                } 
-                            }))
-                            alert.addTextField { (textField) in
-                                textField.placeholder = "user name"
-                                textField.text = userName
-                            }
-                            self.present(alert, animated: true, completion: nil)
-                        }
                     }
                 }
         }
     }
+    
+    
     
     
     //MARK: - register palyer name
@@ -149,9 +119,10 @@ class HomeViewController: UIViewController {
                     .document(documentId)
                         .updateData([K.FStore.nameField: text]) { err in
                         if let e = err {
-                            print("Error updating document: \(e)")
+                            print("Error updating document when register player name: \(e)")
                         } else {
-                            print("success!")
+//                            print("success!")
+                            self.playerInfo[K.FStore.nameField] = text
                         }
                     }
                 }
@@ -195,22 +166,30 @@ class HomeViewController: UIViewController {
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         
         performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+
+        // create new game array in db & player's ready status -> true
         
-//        db.collection(K.FStore.playersCollection)
+        db.collection(K.FStore.newGameCpllection)
+            .addDocument(data: [K.FStore.gameBoardField: GameBoard.gameBoard, K.FStore.player1Field: playerInfo[K.FStore.nameField]!, K.FStore.player2Field: "", K.FStore.uID: playerInfo[K.FStore.uID]!]) { (err) in
+                if let err = err {
+                    print("Error getting documents3: \(err)")
+                } else {
+                    
+                    self.db.collection(K.FStore.playersCollection).document(self.docId).updateData([K.FStore.isReadyField: true]){ err in
+                        if let err = err {
+                            print("Error updating player's isReady status: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                        }
+                    }
+                }
+        }
         
-        
-        
-        
+
         
     }
-    
-    
 
 }
-
-
-
-
 
 
 //MARK: - extentions for table view
@@ -234,30 +213,48 @@ extension HomeViewController: UITableViewDataSource {
 }
 
 
+//MARK: - join the active game room
+
+
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
 
-//        var sender =
-//        var receiver =
+        // serch game db where player1 is ready to play
         
-        
-        //make new db and
-        
-        
-        db.collection(K.FStore.newGameCpllection)
-            .addDocument(data: [K.FStore.gameBoardField: GameBoard.gameBoard]) { (err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
+        db.collection(K.FStore.newGameCpllection).whereField(K.FStore.uID, isEqualTo: players[indexPath.row].uID).addSnapshotListener { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting game db: \(err)")
+            } else {
+                
+                for doc in querySnapshot!.documents {
+//                    print("\(doc.documentID) ====> \(doc.data())")
                     
+                    self.gameDocumentID = doc.documentID
+                    
+//                    var data = doc.data()
+//                    data[K.FStore.player2Field] = self.playerInfo[K.FStore.nameField]
+//                    self.gameRoomID = data[K.FStore.uID] as! String
                 }
+                
+                self.db.collection(K.FStore.newGameCpllection).document(self.gameDocumentID).updateData([
+                    K.FStore.player2Field: self.playerInfo[K.FStore.nameField]!
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+            }
         }
         
         
         
         
-        
         performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+        
+        
+        
+        
     }
 }

@@ -9,7 +9,8 @@
 import Foundation
 
 struct Player {
-    let playerID: String
+    let uID: String
     let name: String
     let isReady: Bool
+    let email: String
 }

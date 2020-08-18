@@ -69,7 +69,7 @@ class RegisterViewController: UIViewController {
                         K.FStore.emailField: email,
                         K.FStore.nameField: "",
                         K.FStore.uID: Auth.auth().currentUser!.uid,
-                        K.FStore.dateField: Date().timeIntervalSince1970
+                        K.FStore.isReadyField: false
                     ]) { (error) in
                         
                         if let err = error {
