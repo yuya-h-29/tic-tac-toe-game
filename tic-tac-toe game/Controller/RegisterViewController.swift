@@ -65,7 +65,12 @@ class RegisterViewController: UIViewController {
                     // Add a new document with a generated ID
                     var ref: DocumentReference? = nil
                     
-                    ref = self.db.collection(K.FStore.playersCollection).addDocument(data: [K.FStore.emailField: email, K.FStore.nameField: "", K.FStore.uID: Auth.auth().currentUser!.uid]) { (error) in
+                    ref = self.db.collection(K.FStore.playersCollection).addDocument(data: [
+                        K.FStore.emailField: email,
+                        K.FStore.nameField: "",
+                        K.FStore.uID: Auth.auth().currentUser!.uid,
+                        K.FStore.dateField: Date().timeIntervalSince1970
+                    ]) { (error) in
                         
                         if let err = error {
                             print("There was an issue storing data to firestore. \(err)")
