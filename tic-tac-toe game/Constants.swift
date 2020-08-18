@@ -38,12 +38,13 @@ struct K {
     struct Controllers {
         static let menuVC = "MenuViewController"
         static let HomeVC = "HomeViewController"
+        static let GameVC = "GameScreenViewController"
     }
     
     
     struct FStore {
         static let playersCollection = "Players"
-        static let newGameCpllection = "NewGame"
+        static let newGameCollection = "NewGame"
         static let emailField = "email"
         static let nameField = "name"
         static let uID = "uID"
@@ -52,5 +53,7 @@ struct K {
         static let player1Field = "player1"
         static let player2Field = "player2"
         static let gameBoardField = "gameBoard"
+        static let isPlayer1Turn = "isPlayer1"
+        static let isGameOver = "isGameOver"
     }
 }

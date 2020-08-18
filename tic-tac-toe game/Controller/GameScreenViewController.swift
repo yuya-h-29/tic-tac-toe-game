@@ -21,6 +21,8 @@ class GameScreenViewController: UIViewController {
     
     var isPlayer1 = true
     var isGameOver = false
+    var gameDocumentID = ""
+    
 
     /* gameBoard structure
      
@@ -55,6 +57,8 @@ class GameScreenViewController: UIViewController {
         result.text = ""
         displayHandPointer()
         // Do any additional setup after loading the view.
+        
+//        print("this is the gameid "\(gameDocumentID))
     }
     
     

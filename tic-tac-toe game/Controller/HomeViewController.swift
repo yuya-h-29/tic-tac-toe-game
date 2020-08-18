@@ -166,11 +166,12 @@ class HomeViewController: UIViewController {
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         
         performSegue(withIdentifier: K.homeToGameScreen, sender: self)
-
+        
         // create new game array in db & player's ready status -> true
         
-        db.collection(K.FStore.newGameCpllection)
-            .addDocument(data: [K.FStore.gameBoardField: GameBoard.gameBoard, K.FStore.player1Field: playerInfo[K.FStore.nameField]!, K.FStore.player2Field: "", K.FStore.uID: playerInfo[K.FStore.uID]!]) { (err) in
+        db.collection(K.FStore.newGameCollection)
+            .addDocument(data: [K.FStore.gameBoardField: GameBoard.gameBoard, K.FStore.player1Field: playerInfo[K.FStore.nameField]!, K.FStore.player2Field: K.FStore.player2Field, K.FStore.uID: playerInfo[K.FStore.uID]!]) { (err) in
+                
                 if let err = err {
                     print("Error getting documents3: \(err)")
                 } else {
@@ -184,11 +185,18 @@ class HomeViewController: UIViewController {
                     }
                 }
         }
-        
-
-        
     }
+    
+    
+    //MARK: - pass gameDocumentID to next screen
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.homeToGameScreen {
+            let gameScreenVC = segue.destination as! GameScreenViewController
 
+                gameScreenVC.gameDocumentID = gameDocumentID
+        }
+    }
 }
 
 
@@ -221,39 +229,31 @@ extension HomeViewController: UITableViewDelegate {
 
         // serch game db where player1 is ready to play
         
-        db.collection(K.FStore.newGameCpllection).whereField(K.FStore.uID, isEqualTo: players[indexPath.row].uID).addSnapshotListener { (querySnapshot, err) in
+        db.collection(K.FStore.newGameCollection).whereField(K.FStore.uID, isEqualTo: players[indexPath.row].uID).getDocuments { (querySnapshot, err) in
             if let err = err {
                 print("Error getting game db: \(err)")
             } else {
                 
                 for doc in querySnapshot!.documents {
 //                    print("\(doc.documentID) ====> \(doc.data())")
-                    
+
                     self.gameDocumentID = doc.documentID
-                    
-//                    var data = doc.data()
-//                    data[K.FStore.player2Field] = self.playerInfo[K.FStore.nameField]
-//                    self.gameRoomID = data[K.FStore.uID] as! String
-                }
                 
-                self.db.collection(K.FStore.newGameCpllection).document(self.gameDocumentID).updateData([
+                self.db.collection(K.FStore.newGameCollection).document(self.gameDocumentID).updateData([
                     K.FStore.player2Field: self.playerInfo[K.FStore.nameField]!
                 ]) { err in
                     if let err = err {
                         print("Error updating document: \(err)")
                     } else {
                         print("Document successfully updated")
+                        
                     }
+                    self.performSegue(withIdentifier: K.homeToGameScreen, sender: self)
                 }
             }
+            }
+            
         }
-        
-        
-        
-        
-        performSegue(withIdentifier: K.homeToGameScreen, sender: self)
-        
-        
         
         
     }
