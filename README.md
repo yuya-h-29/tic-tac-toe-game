@@ -27,6 +27,7 @@ Enjoy *Apple VS Pineapple* 🎉🎉
 
 
 #### Find your opponent
+##### If you want to make a new game room, press the "+" icon on top right. So, other players can see on the table.
 
 ![home screen](https://i.ibb.co/TKjJnCC/Screen-Shot-2020-08-19-at-20-57-11.png)
 
