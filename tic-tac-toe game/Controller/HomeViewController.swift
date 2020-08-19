@@ -139,8 +139,8 @@ class HomeViewController: UIViewController {
     // check which room the player check in & check the opponent name with popup
     // then take the user to game room
     
-    func joinGameRoom () {
-        let alert = UIAlertController(title: "Do you want to play the game in this game room?", message: "", preferredStyle: .alert)
+    func joinGameRoom (title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
             self.performSegue(withIdentifier: K.homeToGameScreen, sender: self)
@@ -193,16 +193,20 @@ class HomeViewController: UIViewController {
     
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         
-        performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+//        performSegue(withIdentifier: K.homeToGameScreen, sender: self)
         
         // create new game array in db & player's ready status -> true
         
-        db.collection(K.FStore.newGameCollection)
+        var ref: DocumentReference? = nil
+        
+        ref = db.collection(K.FStore.newGameCollection)
             .addDocument(data: [K.FStore.gameBoardField: GameBoard.gameBoard, K.FStore.player1Field: playerInfo[K.FStore.nameField]!, K.FStore.player2Field: K.FStore.player2Field, K.FStore.uID: playerInfo[K.FStore.uID]!]) { (err) in
                 
                 if let err = err {
                     print("Error getting documents3: \(err)")
                 } else {
+                    
+                    self.gameDocumentID = ref!.documentID
                     
                     self.db.collection(K.FStore.playersCollection).document(self.docId).updateData([K.FStore.isReadyField: true]){ err in
                         if let err = err {
@@ -210,6 +214,8 @@ class HomeViewController: UIViewController {
                         } else {
                             print("Document successfully updated")
                         }
+                        self.joinGameRoom(title: K.Messages.makeNewRoom, message: K.Messages.waitOpponent)
+                        
                     }
                 }
         }
@@ -277,7 +283,7 @@ extension HomeViewController: UITableViewDelegate {
                         
                     }
 //                    self.performSegue(withIdentifier: K.homeToGameScreen, sender: self)
-                    self.joinGameRoom()
+                    self.joinGameRoom(title: K.Messages.askToJoinTheRoom, message: K.Messages.none)
                 }
             }
             }

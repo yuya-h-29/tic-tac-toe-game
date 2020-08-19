@@ -23,6 +23,13 @@ struct K {
         static let cellIdentifier = "playerCell"
     }
     
+    struct Messages {
+        static let askToJoinTheRoom = "Do you want to play the game in this game room?"
+        static let none = ""
+        static let makeNewRoom = "Do you want to make a new game room?"
+        static let waitOpponent = "Please wait until another player is ready."
+    }
+    
     
     struct Image {
         static let backgroundimageWithFruits = "backgroundFruits"

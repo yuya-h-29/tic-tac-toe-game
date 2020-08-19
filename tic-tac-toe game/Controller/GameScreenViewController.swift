@@ -61,12 +61,32 @@ class GameScreenViewController: UIViewController {
         displayHandPointer()
         // Do any additional setup after loading the view.
         
-//        print("this is the gameid "\(gameDocumentID))
+        print("this is the gameiddddddddddddddddd \(gameDocumentID)")
+        loadGameInfo()
     }
     
     // load game data=> palyer name , turn , make fields
     
-    
+    func loadGameInfo() {
+        
+        let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
+        
+        print("AAAAAA\(docRef)")
+        
+        // Force the SDK to fetch the document from the cache. Could also specify
+        // FirestoreSource.server or FirestoreSource.default.
+//        docRef.getDocument(source: .cache) { (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                print("Document data: \(dataDescription)")
+//                let data = document.data()
+//                print("EEEEEEEEEEEEEEEEE\(String(describing: data))")
+//            } else {
+//                print("Document does not exist")
+//            }
+//
+//        }
+    }
     
     
     
