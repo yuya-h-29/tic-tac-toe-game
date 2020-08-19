@@ -25,6 +25,7 @@ class GameScreenViewController: UIViewController {
     var gameDocumentID = ""
     
     let db = Firestore.firestore()
+    var userName = ""
     
 
     /* gameBoard structure
@@ -60,8 +61,6 @@ class GameScreenViewController: UIViewController {
         result.text = ""
         displayHandPointer()
         // Do any additional setup after loading the view.
-        
-        print("this is the gameiddddddddddddddddd \(gameDocumentID)")
         loadGameInfo()
     }
     
@@ -71,21 +70,24 @@ class GameScreenViewController: UIViewController {
         
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
-        print("AAAAAA\(docRef)")
+        docRef.addSnapshotListener { documentSnapshot, error in
+          guard let document = documentSnapshot else {
+            print("Error fetching document: \(error!)")
+            return
+          }
+          guard let data = document.data() else {
+            print("Document data was empty.")
+            return
+          }
+          print("Current data: \(data)")
+            self.player1.text = data[K.FStore.player1Field] as? String
+            self.player2.text = data[K.FStore.player2Field] as? String
+            
+            
+            
+        }
         
-        // Force the SDK to fetch the document from the cache. Could also specify
-        // FirestoreSource.server or FirestoreSource.default.
-//        docRef.getDocument(source: .cache) { (document, error) in
-//            if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-//                print("Document data: \(dataDescription)")
-//                let data = document.data()
-//                print("EEEEEEEEEEEEEEEEE\(String(describing: data))")
-//            } else {
-//                print("Document does not exist")
-//            }
-//
-//        }
+
     }
     
     
