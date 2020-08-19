@@ -62,5 +62,6 @@ struct K {
         static let gameBoardField = "gameBoard"
         static let isPlayer1Turn = "isPlayer1"
         static let isGameOver = "isGameOver"
+        static let result = "result"
     }
 }

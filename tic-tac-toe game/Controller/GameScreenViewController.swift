@@ -62,32 +62,53 @@ class GameScreenViewController: UIViewController {
         displayHandPointer()
         // Do any additional setup after loading the view.
         loadGameInfo()
+        getPlayerName()
     }
     
-    // load game data=> palyer name , turn , make fields
+    
+    // display player names on the game and add fields on gameDocument
     
     func loadGameInfo() {
         
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
         docRef.addSnapshotListener { documentSnapshot, error in
-          guard let document = documentSnapshot else {
-            print("Error fetching document: \(error!)")
-            return
-          }
-          guard let data = document.data() else {
-            print("Document data was empty.")
-            return
-          }
-          print("Current data: \(data)")
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
             self.player1.text = data[K.FStore.player1Field] as? String
             self.player2.text = data[K.FStore.player2Field] as? String
-            
-            
-            
         }
         
+        docRef.updateData([
+            K.FStore.isGameOver: false,
+            K.FStore.isPlayer1Turn: true,
+            K.FStore.result: ""
+        
+        ])
+    }
 
+    
+    
+    func getPlayerName() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let userId = user.uid
+            db.collection(K.FStore.playersCollection).whereField(K.FStore.uID, isEqualTo: userId).getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("Error fetching player document. \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.userName = document.data()[K.FStore.nameField] as! String
+                    }
+                }
+            }
+        }
     }
     
     
