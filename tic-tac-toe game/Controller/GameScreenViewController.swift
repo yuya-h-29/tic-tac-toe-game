@@ -23,9 +23,10 @@ class GameScreenViewController: UIViewController {
     var isPlayer1 = true
     var isGameOver = false
     var gameDocumentID = ""
+    var player1UID = ""
     
     let db = Firestore.firestore()
-    var userName = ""
+    var playerID = ""
     
 
     /* gameBoard structure
@@ -62,7 +63,7 @@ class GameScreenViewController: UIViewController {
         displayHandPointer()
         // Do any additional setup after loading the view.
         loadGameInfo()
-        getPlayerName()
+        getSignedinPlayerID()
     }
     
     
@@ -83,6 +84,7 @@ class GameScreenViewController: UIViewController {
             }
             self.player1.text = data[K.FStore.player1Field] as? String
             self.player2.text = data[K.FStore.player2Field] as? String
+            self.player1UID = data[K.FStore.uID] as! String
         }
         
         docRef.updateData([
@@ -95,19 +97,17 @@ class GameScreenViewController: UIViewController {
 
     
     
-    func getPlayerName() {
+    //MARK: - get current user's ID
+    
+    // playerID is either player1 or player2 's ID.
+    // player1UID is player1's ID.
+   
+    func getSignedinPlayerID() {
         let user = Auth.auth().currentUser
         if let user = user {
             let userId = user.uid
-            db.collection(K.FStore.playersCollection).whereField(K.FStore.uID, isEqualTo: userId).getDocuments { (querySnapshot, err) in
-                if let err = err {
-                    print("Error fetching player document. \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        self.userName = document.data()[K.FStore.nameField] as! String
-                    }
-                }
-            }
+            
+            playerID = userId
         }
     }
     
@@ -201,15 +201,56 @@ class GameScreenViewController: UIViewController {
     }
     
     
+    
+    //read data
+    
+    func listenGameData() {
+        let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
+        
+        docRef.addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            self.isPlayer1 = data[K.FStore.isPlayer1Turn] as!Bool
+        }
+    }
+    
+    
+    
+    
+    
     @IBAction func platePressed(_ sender: UIButton) {
         
-        if gameBoard[sender.tag] == "" && !isGameOver{
+//        if gameBoard[sender.tag] == "" && !isGameOver{
+//
+//            changePlateImage(plate: sender)
+//            hasGameFinihsed()
+//            chnagePlayerTurn()
+//            displayHandPointer()
+//        }
+        
+        // if current playerID matches player1UID, enable this button
+        if isPlayer1 && playerID == player1UID{
             
-            changePlateImage(plate: sender)
-            hasGameFinihsed()
-            chnagePlayerTurn()
-            displayHandPointer()
+        print("faaafa\(isPlayer1)")
+        
+        
+        
+        
+        
+        
+        } else if !isPlayer1 && playerID != player1UID {
+            print("\(isPlayer1)")
         }
+        
+        
+        
+        
     }
     
     
