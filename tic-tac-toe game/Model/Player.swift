@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Use this struct Player to display players on table view who are rady to play a new game.
+
 struct Player {
     let uID: String
     let name: String

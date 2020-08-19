@@ -15,13 +15,11 @@ class CustomButton: UIButton {
         setupButton()
     }
     
-    
     func setupButton() {
         setShadow()
         setTitleColor(.white, for: .normal)
         layer.cornerRadius = 25
     }
-    
     
     private func setShadow() {
         layer.shadowColor = UIColor.black.cgColor

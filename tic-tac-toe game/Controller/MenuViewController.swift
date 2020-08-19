@@ -11,12 +11,11 @@ import UIKit
 class MenuViewController: UIViewController {
     
     
-
-
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundimageWithFruits)
-        // Do any additional setup after loading the view.
+        
     }
     
     
