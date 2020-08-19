@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class GameScreenViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class GameScreenViewController: UIViewController {
     var isPlayer1 = true
     var isGameOver = false
     var gameDocumentID = ""
+    
+    let db = Firestore.firestore()
     
 
     /* gameBoard structure
