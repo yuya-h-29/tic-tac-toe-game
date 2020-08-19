@@ -239,33 +239,35 @@ class GameScreenViewController: UIViewController {
     
     @IBAction func platePressed(_ sender: UIButton) {
         
-//        if gameBoard[sender.tag] == "" && !isGameOver{
-//
-//            changePlateImage(plate: sender)
-//            hasGameFinihsed()
-//            chnagePlayerTurn()
-//            displayHandPointer()
-//        }
+        if gameBoard[sender.tag] == "" && !isGameOver{
+
+            changePlateImage(plate: sender)
+            hasGameFinihsed()
+            chnagePlayerTurn()
+            displayHandPointer()
+        }
         
         // if current playerID matches player1UID, enable this button
-        if isPlayer1 && playerID == player1UID{
-            
-            // listen updates
-            listenGameData()
-            
-        print("faaafa\(isPlayer1)")
+//        if isPlayer1 && playerID == player1UID{
+//
+//            // listen updates
+//            listenGameData()
+//
+//        print("faaafa\(isPlayer1)")
+//
+//            changePlateImage(plate: sender)
+//
+//
+//
+//            // update changes
+//
+//            updateGameData()
+//
+//        } else if !isPlayer1 && playerID != player1UID {
+//            print("\(isPlayer1)")
+//        }
         
-            changePlateImage(plate: sender)
         
-        
-        
-            // update changes
-        
-            updateGameData()
-        
-        } else if !isPlayer1 && playerID != player1UID {
-            print("\(isPlayer1)")
-        }
         
         
         
