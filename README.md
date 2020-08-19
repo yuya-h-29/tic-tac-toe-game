@@ -55,6 +55,7 @@ Currently, I haven't deployed Apple VS Pineapple. Therefore, in order to run the
 - [Swift](https://developer.apple.com/swift/)
 - [Cloud Firestore](https://cloud.google.com/firestore)
 - [Firebase](https://firebase.google.com/)
+- [Canva](https://www.canva.com/)
 
 ### cocoapods
 
