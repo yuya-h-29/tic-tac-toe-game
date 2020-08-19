@@ -16,93 +16,65 @@ Enjoy *Apple VS Pineapple* 🎉🎉
 
 ## 👀 App Preview
 
+#### Welcome Screen
+
+![home screen](https://i.ibb.co/qRnHfpv/Screen-Shot-2020-08-19-at-20-53-38.png)
+
+#### Register Your Player Name
+
+![home screen](https://i.ibb.co/Jk8nh7q/Screen-Shot-2020-08-19-at-20-56-57.png)
 
 
 
+#### Find your opponent
+
+![home screen](https://i.ibb.co/TKjJnCC/Screen-Shot-2020-08-19-at-20-57-11.png)
+
+
+#### Play Apple VS Pineapple
+![home screen](https://i.ibb.co/LJ4Xrj6/Screen-Shot-2020-08-19-at-20-59-04.png)
+
+
+#### For now, it's a single player mode...🙏
+![home screen](https://i.ibb.co/Qd959dR/Screen-Shot-2020-08-19-at-20-58-23.png)
 
 
 
+## Getting Started & Prerequisites
 
-## Getting Started
+Currently, I haven't deployed Apple VS Pineapple. Therefore, in order to run the app, you need to have Xcode in your Mac. 
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+1. Clone this project
+2. Run Simulator with two different iPhones (i.e. iPhone8 & iPhone11)
+3. Build and launch the app. 
 
-### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+- [Swift](https://developer.apple.com/swift/)
+- [Cloud Firestore](https://cloud.google.com/firestore)
+- [Firebase](https://firebase.google.com/)
+
+### cocoapods
+
+- [IQKeyboardManager](https://cocoapods.org/pods/IQKeyboardManager)
+
+
+
+## Author
+
+- Yuya Harada
+
+
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+- PRs are welcome, but please open an issue first to discuss what you would like to change.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
