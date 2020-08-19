@@ -108,8 +108,10 @@ class HomeViewController: UIViewController {
     
     
     
-    //MARK: - register palyer name
+    //MARK: - popups
         
+    
+    // register palyer name
     
     func registerPlayerName(documentId: String) {
         let alert = UIAlertController(title: "Let's register your user name!!", message: "", preferredStyle: .alert)
@@ -133,6 +135,32 @@ class HomeViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
     }
         
+    
+    // check which room the player check in & check the opponent name with popup
+    // then take the user to game room
+    
+    func joinGameRoom () {
+        let alert = UIAlertController(title: "Do you want to play the game in this game room?", message: "", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            self.performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            print("cancel pressed")
+        })
+        
+        alert.addAction(yesAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+        
+        
+        
+    }
+    
+    
+    
 
     
     //MARK: - logout action
@@ -248,7 +276,8 @@ extension HomeViewController: UITableViewDelegate {
                         print("Document successfully updated")
                         
                     }
-                    self.performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+//                    self.performSegue(withIdentifier: K.homeToGameScreen, sender: self)
+                    self.joinGameRoom()
                 }
             }
             }

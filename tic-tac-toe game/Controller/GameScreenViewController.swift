@@ -61,6 +61,14 @@ class GameScreenViewController: UIViewController {
 //        print("this is the gameid "\(gameDocumentID))
     }
     
+    // load game data=> palyer name , turn , make fields
+    
+    
+    
+    
+    
+    
+    
     
     //MARK: - check which player won the game
     func changeGameBoard (index: Int, fruit: String){
