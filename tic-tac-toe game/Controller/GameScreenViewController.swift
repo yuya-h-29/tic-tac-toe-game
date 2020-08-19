@@ -217,7 +217,20 @@ class GameScreenViewController: UIViewController {
                 return
             }
             self.isPlayer1 = data[K.FStore.isPlayer1Turn] as!Bool
+            self.gameBoard = data[K.FStore.gameBoardField] as![String]
         }
+    }
+    
+    
+    func updateGameData() {
+        let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
+        
+        docRef.updateData([
+            K.FStore.gameBoardField: gameBoard,
+            K.FStore.isPlayer1Turn: isPlayer1,
+            
+        
+        ])
     }
     
     
@@ -237,12 +250,18 @@ class GameScreenViewController: UIViewController {
         // if current playerID matches player1UID, enable this button
         if isPlayer1 && playerID == player1UID{
             
+            // listen updates
+            listenGameData()
+            
         print("faaafa\(isPlayer1)")
         
+            changePlateImage(plate: sender)
         
         
         
+            // update changes
         
+            updateGameData()
         
         } else if !isPlayer1 && playerID != player1UID {
             print("\(isPlayer1)")
