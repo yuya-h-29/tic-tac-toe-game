@@ -16,15 +16,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextFeild: UITextField!
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundFruitsTop)
         emailTextFeild.delegate = self
         passwordTextFeild.delegate = self
         self.navigationController?.isNavigationBarHidden = false
-        
     }
     
     
@@ -35,37 +32,23 @@ class LoginViewController: UIViewController {
         if let email = emailTextFeild.text, let password = passwordTextFeild.text {
             
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-              
                 
                 if error != nil {
                     
                     // display alert message when the user failed to sign in
-                    
                     let alert = UIAlertController(title: "Login failed", message: "Sorry. \(error!.localizedDescription)", preferredStyle: .alert)
                     
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    
                     self!.present(alert, animated: true, completion: nil)
                 
-                    
                 } else {
                     
                     self!.performSegue(withIdentifier: K.loginToHome, sender: self)
                     
                 }
-                
-              
             }
-            
         }
-        
-
-        
-
-        
-        
     }
-    
 }
 
 

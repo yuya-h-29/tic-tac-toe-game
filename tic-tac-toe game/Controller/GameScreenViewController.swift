@@ -6,6 +6,12 @@
 //  Copyright © 2020 Yuya Harada. All rights reserved.
 //
 
+/*
+ currently, this game is single play...
+ */
+
+
+
 import UIKit
 import Firebase
 
@@ -60,13 +66,14 @@ class GameScreenViewController: UIViewController {
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundImage)
         result.text = ""
+        
         displayHandPointer()
-        // Do any additional setup after loading the view.
         loadGameInfo()
         getSignedinPlayerID()
     }
     
     
+    //MARK: - load player data
     // display player names on the game and add fields on gameDocument
     
     func loadGameInfo() {
@@ -82,48 +89,48 @@ class GameScreenViewController: UIViewController {
                 print("Document data was empty.")
                 return
             }
+            
+            //display players name on screen
             self.player1.text = data[K.FStore.player1Field] as? String
             self.player2.text = data[K.FStore.player2Field] as? String
+            
             self.player1UID = data[K.FStore.uID] as! String
         }
         
+        // add new fields for match
         docRef.updateData([
             K.FStore.isGameOver: false,
             K.FStore.isPlayer1Turn: true,
             K.FStore.result: ""
-        
+            
         ])
     }
 
     
     
-    //MARK: - get current user's ID
-    
-    // playerID is either player1 or player2 's ID.
-    // player1UID is player1's ID.
+    //MARK: - get user's ID
+//    playerID is either player1 or player2 's ID.
+//    player1UID is player1's ID.
    
     func getSignedinPlayerID() {
         let user = Auth.auth().currentUser
         if let user = user {
             let userId = user.uid
-            
             playerID = userId
         }
     }
-    
-    
-    
-    
-    
+
     
     //MARK: - check which player won the game
+    
+    // 1 - update game board status
     func changeGameBoard (index: Int, fruit: String){
-        
         // add name of the fruit in the gameBoard
         gameBoard[index] = fruit
     }
     
     
+    // 2 - check the game board is one of the winning pattern or not
     func hasGameFinihsed () {
         
         // if one of the player wins, this block is called
@@ -135,19 +142,15 @@ class GameScreenViewController: UIViewController {
                 changeMessage(winner: winner)
             }
         }
-        
         // for Draw
         if !gameBoard.contains("") && !isGameOver {
             isGameOver = true
             changeMessage(winner: nil)
         }
-        
-        
     }
     
-
     
-    // change message
+    // 3 - change message if game ends
     
     func changeMessage (winner: String?) {
         
@@ -159,12 +162,11 @@ class GameScreenViewController: UIViewController {
     }
     
 
-    
 
     //MARK: - player's turn related
     
     func displayHandPointer () {
-
+        
         if isGameOver {
             playerOneHand.image = nil
             playerTwoHand.image = nil
@@ -189,6 +191,7 @@ class GameScreenViewController: UIViewController {
     }
      
     
+    
     //MARK: - change image of a plate
     
     func changePlateImage (plate: UIButton) {
@@ -202,7 +205,7 @@ class GameScreenViewController: UIViewController {
     
     
     
-    //read data
+    //MARK: - listen the updates ? => need to read the doc more
     
     func listenGameData() {
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
@@ -235,7 +238,7 @@ class GameScreenViewController: UIViewController {
     
     
     
-    
+    //MARK: - trigger functions when a plate pressed
     
     @IBAction func platePressed(_ sender: UIButton) {
         
@@ -247,6 +250,13 @@ class GameScreenViewController: UIViewController {
             displayHandPointer()
         }
         
+    }
+}
+        
+        
+        
+        
+//MARK: - this is for multy-player?
         // if current playerID matches player1UID, enable this button
 //        if isPlayer1 && playerID == player1UID{
 //
@@ -267,15 +277,3 @@ class GameScreenViewController: UIViewController {
 //            print("\(isPlayer1)")
 //        }
         
-        
-        
-        
-        
-        
-    }
-    
-    
-
-    
-    
-}

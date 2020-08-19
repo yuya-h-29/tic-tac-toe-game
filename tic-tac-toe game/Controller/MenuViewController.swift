@@ -12,35 +12,29 @@ class MenuViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundimageWithFruits)
-        
     }
     
     
     @IBAction func loginPressed(_ sender: UIButton) {
-        
         performSegue(withIdentifier: K.menuToLogin, sender: self)
     }
     
     
-
     @IBAction func signUpPressed(_ sender: UIButton) {
-        
         performSegue(withIdentifier: K.menuToRegister, sender: self)
     }
     
-
+    
 }
+
 
 
 extension UIViewController {
     
     
-    
-    func setBackground (image:
-    String) {
+    func setBackground(image: String) {
         
         let backgroundImageView = UIImageView()
         view.addSubview(backgroundImageView)
@@ -50,11 +44,10 @@ extension UIViewController {
         backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         backgroundImageView.contentMode = .scaleAspectFill
-        
         backgroundImageView.image = UIImage(named: image)
         view.sendSubviewToBack(backgroundImageView)
         
-        
     }
+    
     
 }
