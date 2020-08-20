@@ -45,9 +45,12 @@ class GameScreenViewController: UIViewController {
      
      */
     
-    var gameBoard: [String] = [
-        "", "", "", "", "", "", "", "", "",
-    ]
+//    var gameBoard: [String] = [
+//        "", "", "", "", "", "", "", "", "",
+//    ]
+    
+    var gameBoard: [String] = GameBoard.gameBoard
+    
     
     
     let winningPatterns = [
@@ -95,6 +98,12 @@ class GameScreenViewController: UIViewController {
             self.player2.text = data[K.FStore.player2Field] as? String
             
             self.player1UID = data[K.FStore.uID] as! String
+            
+            
+            // adding this and see local board game changes
+            self.gameBoard = data[K.FStore.gameBoardField] as! [String]
+            print("loading game data in loadGame info func: \(self.gameBoard)")
+            
         }
         
         // add new fields for match
@@ -127,6 +136,8 @@ class GameScreenViewController: UIViewController {
     func changeGameBoard (index: Int, fruit: String){
         // add name of the fruit in the gameBoard
         gameBoard[index] = fruit
+        
+        print("this is the local game board: \(gameBoard)")
     }
     
     
@@ -182,7 +193,7 @@ class GameScreenViewController: UIViewController {
     }
     
     
-    func chnagePlayerTurn () {
+    func changePlayerTurn () {
         if isPlayer1 {
             isPlayer1 = false
         } else {
@@ -208,6 +219,9 @@ class GameScreenViewController: UIViewController {
     //MARK: - listen the updates ? => need to read the doc more
     
     func listenGameData() {
+        
+        //listen game data func called
+        
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
         docRef.addSnapshotListener { documentSnapshot, error in
@@ -228,13 +242,14 @@ class GameScreenViewController: UIViewController {
     func updateGameData() {
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
+        print("this will be the new local game board \(gameBoard)")
         docRef.updateData([
             K.FStore.gameBoardField: gameBoard,
-            K.FStore.isPlayer1Turn: isPlayer1,
             
-        
+            K.FStore.isPlayer1Turn: isPlayer1,
         ])
     }
+
     
     
     
@@ -242,38 +257,30 @@ class GameScreenViewController: UIViewController {
     
     @IBAction func platePressed(_ sender: UIButton) {
         
-        if gameBoard[sender.tag] == "" && !isGameOver{
-
-            changePlateImage(plate: sender)
-            hasGameFinihsed()
-            chnagePlayerTurn()
-            displayHandPointer()
-        }
+        //MARK: - this is for multy-player?
         
+        listenGameData()
+        
+        
+        
+        
+        
+        if gameBoard[sender.tag] == "" && !isGameOver {
+            
+            
+            // check if player is allowed to tap the button
+            if (isPlayer1 && playerID == player1UID) || (!isPlayer1 && playerID != player1UID){
+                
+                changePlateImage(plate: sender)
+                hasGameFinihsed()
+                changePlayerTurn()
+                displayHandPointer()
+                // update changes
+                updateGameData()
+                
+            }
+        }
     }
 }
         
-        
-        
-        
-//MARK: - this is for multy-player?
-        // if current playerID matches player1UID, enable this button
-//        if isPlayer1 && playerID == player1UID{
-//
-//            // listen updates
-//            listenGameData()
-//
-//        print("faaafa\(isPlayer1)")
-//
-//            changePlateImage(plate: sender)
-//
-//
-//
-//            // update changes
-//
-//            updateGameData()
-//
-//        } else if !isPlayer1 && playerID != player1UID {
-//            print("\(isPlayer1)")
-//        }
         
