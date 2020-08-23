@@ -122,7 +122,7 @@ class GameScreenViewController: UIViewController {
             
             
             // adding this and see local board game changes
-            self.gameBoard = data[K.FStore.gameBoardField] as! [String]
+//            self.gameBoard = data[K.FStore.gameBoardField] as! [String]
 //            print("loading game data in loadGame info func: \(self.gameBoard)")
 //            self.displayHandPointer()
         }
@@ -264,9 +264,10 @@ class GameScreenViewController: UIViewController {
                 print("Document data was empty.")
                 return
             }
-            self.isPlayer1 = data[K.FStore.isPlayer1Turn] as! Bool
-            self.gameBoard = data[K.FStore.gameBoardField] as! [String]
             
+            self.gameBoard = data[K.FStore.gameBoardField] as! [String]
+//            self.hasGameFinihsed()
+            self.isPlayer1 = data[K.FStore.isPlayer1Turn] as! Bool
             self.displayHandPointer()
         }
     }
