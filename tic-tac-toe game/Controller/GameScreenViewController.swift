@@ -269,11 +269,12 @@ class GameScreenViewController: UIViewController {
             self.gameBoard = data[K.FStore.gameBoardField] as! [String]
 //            self.hasGameFinihsed()
             self.isPlayer1 = data[K.FStore.isPlayer1Turn] as! Bool
-            self.displayHandPointer()
+            
             
             
             // add this data
             self.isGameOver = data[K.FStore.isGameOver] as! Bool
+            self.displayHandPointer()
             self.result.text = data[K.FStore.result] as? String
         }
     }
