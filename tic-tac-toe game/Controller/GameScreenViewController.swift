@@ -6,8 +6,15 @@
 //  Copyright © 2020 Yuya Harada. All rights reserved.
 //
 
-/*
- currently, this game is single play...
+/* gameBoard structure
+ apply tag number like below to each button
+ 
+ | 1 | 2 | 3 |
+ -------------
+ | 4 | 5 | 6 |
+ -------------
+ | 7 | 8 | 9 |
+ 
  */
 
 
@@ -30,28 +37,12 @@ class GameScreenViewController: UIViewController {
     var isGameOver = false
     var gameDocumentID = ""
     var player1UID = ""
-    var resultMessage = ""
-    
-    let db = Firestore.firestore()
     var playerID = ""
     
+    let db = Firestore.firestore()
 
-    /* gameBoard structure
-     
-     | 0 | 1 | 2 |
-     -------------
-     | 3 | 4 | 5 |
-     -------------
-     | 6 | 7 | 8 |
-     
-     */
-    
-//    var gameBoard: [String] = [
-//        "", "", "", "", "", "", "", "", "",
-//    ]
-    
     var gameBoard: [String] = GameBoard.gameBoard
-    
+    var resultMessage = ""
     
     
     let winningPatterns = [
@@ -66,42 +57,43 @@ class GameScreenViewController: UIViewController {
     ]
     
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundImage)
-        result.text = ""
-        addGameData()
-        
+//        result.text = "" -> edit
+        addFieldsToGameDocument()
         playerTwoHand.image = nil
         playerOneHand.image = UIImage(systemName: K.Image.handPoint)
         
-        loadGameInfo()
+        loadPlayerInfo()
         getSignedinPlayerID()
-        changeImage()
+//        changeImage() -> edit
         listenGameData()
         
     }
     
     
     
-    func addGameData() {
+    //MARK: - add missing fields for game
+    func addFieldsToGameDocument() {
         
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
-        // add new fields for match
+        // add new fields into a current game document
         docRef.updateData([
             K.FStore.isGameOver: false,
             K.FStore.isPlayer1Turn: true,
             K.FStore.result: resultMessage
-            
         ])
     }
     
     
-    //MARK: - load player data
-    // display player names on the game and add fields on gameDocument
     
-    func loadGameInfo() {
+    //MARK: - load player information
+    // get player's name and display on the screen & get player1UID
+    
+    func loadPlayerInfo() {
         
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
@@ -124,10 +116,9 @@ class GameScreenViewController: UIViewController {
 
     
     
-    //MARK: - get user's ID
-//    playerID is either player1 or player2 's ID.
-//    player1UID is player1's ID.
-   
+    //MARK: - get current user's ID
+    // use playerID (current user's ID) for checking it's same as player1 ID or not in platePressed()
+    
     func getSignedinPlayerID() {
         let user = Auth.auth().currentUser
         if let user = user {
@@ -137,11 +128,11 @@ class GameScreenViewController: UIViewController {
     }
 
     
-    //MARK: - check which player won the game
+    
+    //MARK: - update local game related vlaues
     
     // 1 - update game board status
-    func changeGameBoard (index: Int, fruit: String){
-        // add name of the fruit in the gameBoard
+    func changeGameBoardStatus (index: Int, fruit: String){
         gameBoard[index] = fruit
     }
     
@@ -149,18 +140,21 @@ class GameScreenViewController: UIViewController {
     // 2 - check the game board is one of the winning pattern or not
     func hasGameFinihsed () {
         
-        // if one of the player wins, this block is called
+        // if one of the players wins, this block is called
         for winningPattern in winningPatterns {
             if gameBoard[winningPattern[0]] == gameBoard[winningPattern[1]] && gameBoard[winningPattern[1]] == gameBoard[winningPattern[2]] && gameBoard[winningPattern[0]].count > 0{
-                isGameOver = true
-                let winner = isPlayer1 ? player1.text : player2.text
                 
+                isGameOver = true
+                
+                let winner = isPlayer1 ? player1.text : player2.text
                 changeMessage(winner: winner)
             }
         }
         // for Draw
         if !gameBoard.contains("") && !isGameOver {
+            
             isGameOver = true
+            
             changeMessage(winner: nil)
         }
     }
@@ -183,28 +177,24 @@ class GameScreenViewController: UIViewController {
     
     func displayHandPointer () {
         
-        // check it is currently player1'S TURN?
-        
         if isGameOver {
             
             self.playerOneHand.image = nil
             self.playerTwoHand.image = nil
-            
             
         } else if isPlayer1 {
             
                 self.playerTwoHand.image = nil
                 self.playerOneHand.image = UIImage(systemName: K.Image.handPoint)
 
-            
         } else {
-            
             
             self.playerOneHand.image = nil
             self.playerTwoHand.image = UIImage(systemName: K.Image.handPoint)
             
         }
     }
+    
     
     
     func changePlayerTurn () {
@@ -223,19 +213,18 @@ class GameScreenViewController: UIViewController {
     func changePlateImage (plate: UIButton) {
 
         let fruitImage = isPlayer1 ? K.Image.apple : K.Image.pineapple
-
+        
         plate.setImage(UIImage(named: fruitImage), for: .normal)
 
-        changeGameBoard(index: plate.tag - 1, fruit: fruitImage)
+        changeGameBoardStatus(index: plate.tag - 1, fruit: fruitImage)
     }
     
     
     
-    //MARK: - listen the updates of data ? => need to read the doc more
+    //MARK: - listen & update game data
     
+    // update local game related values
     func listenGameData() {
-        
-        //listen game data func called
         
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
@@ -249,9 +238,20 @@ class GameScreenViewController: UIViewController {
                 return
             }
             
+            let gameBordArr = data[K.FStore.gameBoardField] as! [String]
+            for (index, fruit) in gameBordArr.enumerated() {
+                if let button =  self.view.viewWithTag(index + 1) as? UIButton {
+                    
+                    let buttonImage = fruit == "" ? K.Image.plate: fruit
+                    
+                    DispatchQueue.main.async {
+                        button.setImage(UIImage(named: buttonImage), for: .normal)
+                    }
+                }
+            }
+            
             self.gameBoard = data[K.FStore.gameBoardField] as! [String]
             self.isPlayer1 = data[K.FStore.isPlayer1Turn] as! Bool
-            // add this data
             self.isGameOver = data[K.FStore.isGameOver] as! Bool
             self.displayHandPointer()
             self.result.text = data[K.FStore.result] as? String
@@ -259,19 +259,23 @@ class GameScreenViewController: UIViewController {
     }
     
     
+    
+    // update Firestore game related values
     func updateGameData() {
+        
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
         docRef.updateData([
             K.FStore.gameBoardField: gameBoard,
-            K.FStore.isGameOver: isGameOver,
             K.FStore.isPlayer1Turn: isPlayer1,
+            K.FStore.isGameOver: isGameOver,
             K.FStore.result: resultMessage
         ])
     }
     
     
-    // update UserImages
+    
+    // listen & update plate Images
     func changeImage() {
         db.collection(K.FStore.newGameCollection).document(gameDocumentID)
             .addSnapshotListener { documentSnapshot, error in
@@ -279,10 +283,10 @@ class GameScreenViewController: UIViewController {
                     print("Error getting documents1: \(err)")
                 } else {
                     if let data = documentSnapshot!.data() {
+                        
                         let gameBordArr = data[K.FStore.gameBoardField] as! [String]
                         for (index, fruit) in gameBordArr.enumerated() {
                             if let button =  self.view.viewWithTag(index + 1) as? UIButton {
-                                
                                 
                                 let buttonImage = fruit == "" ? K.Image.plate: fruit
                                 
@@ -298,29 +302,18 @@ class GameScreenViewController: UIViewController {
 
     
     
-    
-    //MARK: - trigger functions when a plate pressed
+    //MARK: - plate tapped action
     
     @IBAction func platePressed(_ sender: UIButton) {
         
-        //MARK: - this is for multy-player?
-        
-//        listenGameData()
-        
         if gameBoard[sender.tag - 1] == "" && !isGameOver {
-//            print("this is the tag number\(sender.tag), index should be -1")
-            
-            // check if player is allowed to tap the button
+
             if (isPlayer1 && playerID == player1UID) || (!isPlayer1 && playerID != player1UID){
-//                print("aaaaaaaa\(sender)")
-                
-//                changeImage()
+
                 changePlateImage(plate: sender)
                 hasGameFinihsed()
                 changePlayerTurn()
-                // update changes
                 updateGameData()
-                
             }
         }
     }
