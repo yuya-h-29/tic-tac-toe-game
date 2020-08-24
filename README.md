@@ -14,7 +14,7 @@ Enjoy *Apple VS Pineapple* 🎉🎉
 ## 👀 App Preview
 
 ### DEMO
-![Farmers Market Finder Demo](demo/demo.gif)
+![appleVsPineapple](https://user-images.githubusercontent.com/54800510/91013057-142d2180-e622-11ea-99a0-448a09d3cb83.gif)
 
 
 #### Welcome Screen
