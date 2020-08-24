@@ -10,9 +10,6 @@ But, the difference between *Apple VS Pineapple* and other tic-tac-toes is, as y
 
 Enjoy *Apple VS Pineapple* 🎉🎉
 
-###### For now you can *see* other players, but you cannot *play* with other people.🙏 
-###### So, It's a single play for now. A developer will work hard and fix this problem.
-
 
 ## 👀 App Preview
 
@@ -36,7 +33,7 @@ Enjoy *Apple VS Pineapple* 🎉🎉
 ![home screen](https://i.ibb.co/LJ4Xrj6/Screen-Shot-2020-08-19-at-20-59-04.png)
 
 
-#### For now, it's a single player mode...🙏
+#### Enjoy it!!
 ![home screen](https://i.ibb.co/Qd959dR/Screen-Shot-2020-08-19-at-20-58-23.png)
 
 
