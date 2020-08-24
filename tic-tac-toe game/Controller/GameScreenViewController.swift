@@ -61,14 +61,12 @@ class GameScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground(image: K.Image.backgroundImage)
-//        result.text = "" -> edit
         addFieldsToGameDocument()
         playerTwoHand.image = nil
         playerOneHand.image = UIImage(systemName: K.Image.handPoint)
         
         loadPlayerInfo()
         getSignedinPlayerID()
-//        changeImage() -> edit
         listenGameData()
         
     }
