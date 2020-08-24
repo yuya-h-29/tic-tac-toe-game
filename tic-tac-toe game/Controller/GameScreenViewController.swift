@@ -118,14 +118,7 @@ class GameScreenViewController: UIViewController {
             //display players name on screen
             self.player1.text = data[K.FStore.player1Field] as? String
             self.player2.text = data[K.FStore.player2Field] as? String
-            
             self.player1UID = data[K.FStore.uID] as! String
-            
-            
-            // adding this and see local board game changes
-//            self.gameBoard = data[K.FStore.gameBoardField] as! [String]
-//            print("loading game data in loadGame info func: \(self.gameBoard)")
-//            self.displayHandPointer()
         }
     }
 
@@ -150,8 +143,6 @@ class GameScreenViewController: UIViewController {
     func changeGameBoard (index: Int, fruit: String){
         // add name of the fruit in the gameBoard
         gameBoard[index] = fruit
-        
-//        print("this is the local game board: \(gameBoard)")
     }
     
     
@@ -165,14 +156,12 @@ class GameScreenViewController: UIViewController {
                 let winner = isPlayer1 ? player1.text : player2.text
                 
                 changeMessage(winner: winner)
-//                displayHandPointer()
             }
         }
         // for Draw
         if !gameBoard.contains("") && !isGameOver {
             isGameOver = true
             changeMessage(winner: nil)
-//            displayHandPointer()
         }
     }
     
@@ -193,8 +182,6 @@ class GameScreenViewController: UIViewController {
     //MARK: - player's turn related
     
     func displayHandPointer () {
-        
-        print("is player 1 now? \(isPlayer1)")
         
         // check it is currently player1'S TURN?
         
@@ -224,10 +211,8 @@ class GameScreenViewController: UIViewController {
         
         if isPlayer1 {
             isPlayer1 = false
-//            displayHandPointer()
         } else {
             isPlayer1 = true
-//            displayHandPointer()
         }
     }
      
@@ -240,8 +225,6 @@ class GameScreenViewController: UIViewController {
         let fruitImage = isPlayer1 ? K.Image.apple : K.Image.pineapple
 
         plate.setImage(UIImage(named: fruitImage), for: .normal)
-        
-//        print("this is the plate \(plate), plate.tag \(plate.tag)")
 
         changeGameBoard(index: plate.tag - 1, fruit: fruitImage)
     }
@@ -267,11 +250,7 @@ class GameScreenViewController: UIViewController {
             }
             
             self.gameBoard = data[K.FStore.gameBoardField] as! [String]
-//            self.hasGameFinihsed()
             self.isPlayer1 = data[K.FStore.isPlayer1Turn] as! Bool
-            
-            
-            
             // add this data
             self.isGameOver = data[K.FStore.isGameOver] as! Bool
             self.displayHandPointer()
@@ -283,7 +262,6 @@ class GameScreenViewController: UIViewController {
     func updateGameData() {
         let docRef = db.collection(K.FStore.newGameCollection).document(gameDocumentID)
         
-//        print("this will be the new local game board \(gameBoard)")
         docRef.updateData([
             K.FStore.gameBoardField: gameBoard,
             K.FStore.isGameOver: isGameOver,
@@ -303,10 +281,8 @@ class GameScreenViewController: UIViewController {
                     if let data = documentSnapshot!.data() {
                         let gameBordArr = data[K.FStore.gameBoardField] as! [String]
                         for (index, fruit) in gameBordArr.enumerated() {
-//                            print("tagnumber: \(index + 1), fruit: \(fruit), board: \(gameBordArr)")
                             if let button =  self.view.viewWithTag(index + 1) as? UIButton {
                                 
-//                                print("what is the button? \(button)")
                                 
                                 let buttonImage = fruit == "" ? K.Image.plate: fruit
                                 
