@@ -30,6 +30,7 @@ class GameScreenViewController: UIViewController {
     var isGameOver = false
     var gameDocumentID = ""
     var player1UID = ""
+    var resultMessage = ""
     
     let db = Firestore.firestore()
     var playerID = ""
@@ -91,7 +92,7 @@ class GameScreenViewController: UIViewController {
         docRef.updateData([
             K.FStore.isGameOver: false,
             K.FStore.isPlayer1Turn: true,
-            K.FStore.result: String()
+            K.FStore.result: resultMessage
             
         ])
     }
@@ -180,10 +181,10 @@ class GameScreenViewController: UIViewController {
     
     func changeMessage (winner: String?) {
         
-        let resultMessage = (winner != nil) ? "\(winner!) Won!!": "Draw!!"
+        resultMessage = (winner != nil) ? "\(winner!) Won!!": "Draw!!"
         
         DispatchQueue.main.async {
-            self.result.text = resultMessage
+            self.result.text = self.resultMessage
         }
     }
     
@@ -247,7 +248,7 @@ class GameScreenViewController: UIViewController {
     
     
     
-    //MARK: - listen the updates ? => need to read the doc more
+    //MARK: - listen the updates of data ? => need to read the doc more
     
     func listenGameData() {
         
@@ -269,6 +270,11 @@ class GameScreenViewController: UIViewController {
 //            self.hasGameFinihsed()
             self.isPlayer1 = data[K.FStore.isPlayer1Turn] as! Bool
             self.displayHandPointer()
+            
+            
+            // add this data
+            self.isGameOver = data[K.FStore.isGameOver] as! Bool
+            self.result.text = data[K.FStore.result] as? String
         }
     }
     
@@ -281,7 +287,7 @@ class GameScreenViewController: UIViewController {
             K.FStore.gameBoardField: gameBoard,
             K.FStore.isGameOver: isGameOver,
             K.FStore.isPlayer1Turn: isPlayer1,
-            K.FStore.result: result.text!
+            K.FStore.result: resultMessage
         ])
     }
     
