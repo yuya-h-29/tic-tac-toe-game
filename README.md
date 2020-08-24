@@ -13,6 +13,10 @@ Enjoy *Apple VS Pineapple* 🎉🎉
 
 ## 👀 App Preview
 
+### DEMO
+![Farmers Market Finder Demo](demo/demo.gif)
+
+
 #### Welcome Screen
 
 ![home screen](https://i.ibb.co/qRnHfpv/Screen-Shot-2020-08-19-at-20-53-38.png)
