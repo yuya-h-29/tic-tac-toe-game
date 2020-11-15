@@ -1,4 +1,4 @@
-# 🍎 Apple VS Pineapple 🍍    
+# 🍎 Tic tac toe 🍍    
 ### 🔥 *A battle between apple and pineapple* 🔥
 
 
